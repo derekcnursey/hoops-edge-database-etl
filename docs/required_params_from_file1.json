@@ -1,0 +1,50 @@
+{
+  "/teams/roster": [
+    "season"
+  ],
+  "/substitutions/game/{gameId}": [
+    "gameId"
+  ],
+  "/substitutions/player/{playerId}": [
+    "playerId",
+    "season"
+  ],
+  "/substitutions/team": [
+    "season",
+    "team"
+  ],
+  "/stats/team/shooting/season": [
+    "season"
+  ],
+  "/stats/player/season": [
+    "season"
+  ],
+  "/stats/player/shooting/season": [
+    "season"
+  ],
+  "/plays/game/{gameId}": [
+    "gameId"
+  ],
+  "/plays/player/{playerId}": [
+    "playerId",
+    "season"
+  ],
+  "/plays/team": [
+    "season",
+    "team"
+  ],
+  "/plays/date": [
+    "date"
+  ],
+  "/plays/tournament": [
+    "season",
+    "tournament"
+  ],
+  "/lineups/team": [
+    "season",
+    "team"
+  ],
+  "/lineups/game/{gameId}": [
+    "gameId"
+  ]
+}

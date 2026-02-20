@@ -1,0 +1,11 @@
+# CBBD docs/spec URLs tried
+https://api.collegebasketballdata.com/#/
+https://api.collegebasketballdata.com/swagger-ui-init.js
+https://api.collegebasketballdata.com/swagger-ui-bundle.js
+https://api.collegebasketballdata.com/swagger-ui-standalone-preset.js
+https://api.collegebasketballdata.com/swagger-ui.css
+https://api.collegebasketballdata.com/api-docs.json
+https://api.collegebasketballdata.com/api-docs
+https://api.collegebasketballdata.com/openapi.json
+https://api.collegebasketballdata.com/swagger.json
+https://api.collegebasketballdata.com/swagger/v1/swagger.json

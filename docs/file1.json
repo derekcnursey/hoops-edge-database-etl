@@ -1,0 +1,11839 @@
+{
+openapi: "3.0.0",
+components: {
+examples: { },
+headers: { },
+parameters: { },
+requestBodies: { },
+responses: { },
+schemas: {
+VenueInfo: {
+properties: {
+id: {
+type: "number",
+format: "double"
+},
+sourceId: {
+type: "string",
+nullable: true
+},
+name: {
+type: "string"
+},
+city: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"city",
+"state",
+"country"
+],
+type: "object",
+additionalProperties: false
+},
+TeamInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+school: {
+type: "string"
+},
+mascot: {
+type: "string",
+nullable: true
+},
+abbreviation: {
+type: "string",
+nullable: true
+},
+displayName: {
+type: "string",
+nullable: true
+},
+shortDisplayName: {
+type: "string",
+nullable: true
+},
+primaryColor: {
+type: "string",
+nullable: true
+},
+secondaryColor: {
+type: "string",
+nullable: true
+},
+currentVenueId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+currentVenue: {
+type: "string",
+nullable: true
+},
+currentCity: {
+type: "string",
+nullable: true
+},
+currentState: {
+type: "string",
+nullable: true
+},
+conferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+conference: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"school",
+"mascot",
+"abbreviation",
+"displayName",
+"shortDisplayName",
+"primaryColor",
+"secondaryColor",
+"currentVenueId",
+"currentVenue",
+"currentCity",
+"currentState",
+"conferenceId",
+"conference"
+],
+type: "object",
+additionalProperties: false
+},
+TeamRosterPlayer: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+firstName: {
+type: "string",
+nullable: true
+},
+lastName: {
+type: "string",
+nullable: true
+},
+jersey: {
+type: "string",
+nullable: true
+},
+position: {
+type: "string",
+nullable: true
+},
+height: {
+type: "number",
+format: "double",
+nullable: true
+},
+weight: {
+type: "number",
+format: "double",
+nullable: true
+},
+hometown: {
+properties: {
+countyFips: {
+type: "string",
+nullable: true
+},
+longitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+latitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"countyFips",
+"longitude",
+"latitude",
+"country",
+"state",
+"city"
+],
+type: "object"
+},
+dateOfBirth: {
+type: "string",
+format: "date",
+nullable: true
+},
+startSeason: {
+type: "number",
+format: "double"
+},
+endSeason: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"firstName",
+"lastName",
+"jersey",
+"position",
+"height",
+"weight",
+"hometown",
+"dateOfBirth",
+"startSeason",
+"endSeason"
+],
+type: "object",
+additionalProperties: false
+},
+TeamRoster: {
+properties: {
+teamId: {
+type: "integer",
+format: "int32"
+},
+teamSourceId: {
+type: "string"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+season: {
+type: "number",
+format: "double"
+},
+players: {
+items: {
+$ref: "#/components/schemas/TeamRosterPlayer"
+},
+type: "array"
+}
+},
+required: [
+"teamId",
+"teamSourceId",
+"team",
+"conference",
+"season",
+"players"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSubsititution: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athlete: {
+type: "string"
+},
+position: {
+type: "string",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+subIn: {
+properties: {
+opponentPoints: {
+type: "integer",
+format: "int32"
+},
+teamPoints: {
+type: "integer",
+format: "int32"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+period: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"opponentPoints",
+"teamPoints",
+"secondsRemaining",
+"period"
+],
+type: "object"
+},
+subOut: {
+properties: {
+opponentPoints: {
+type: "integer",
+format: "int32"
+},
+teamPoints: {
+type: "integer",
+format: "int32"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+period: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"opponentPoints",
+"teamPoints",
+"secondsRemaining",
+"period"
+],
+type: "object"
+}
+},
+required: [
+"gameId",
+"startDate",
+"teamId",
+"team",
+"conference",
+"athleteId",
+"athlete",
+"position",
+"opponentId",
+"opponent",
+"opponentConference",
+"subIn",
+"subOut"
+],
+type: "object",
+additionalProperties: false
+},
+TeamSeasonUnitStats: {
+properties: {
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+turnovers: {
+properties: {
+teamTotal: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"teamTotal",
+"total"
+],
+type: "object"
+},
+fouls: {
+properties: {
+flagrant: {
+type: "number",
+format: "double",
+nullable: true
+},
+technical: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"flagrant",
+"technical",
+"total"
+],
+type: "object"
+},
+points: {
+properties: {
+fastBreak: {
+type: "number",
+format: "double",
+nullable: true
+},
+offTurnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+inPaint: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fastBreak",
+"offTurnovers",
+"inPaint",
+"total"
+],
+type: "object"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+possessions: {
+type: "number",
+format: "double",
+nullable: true
+},
+rating: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShooting: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"turnovers",
+"fouls",
+"points",
+"fourFactors",
+"assists",
+"blocks",
+"steals",
+"possessions",
+"rating",
+"trueShooting"
+],
+type: "object",
+additionalProperties: false
+},
+TeamSeasonStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+games: {
+type: "integer",
+format: "int32"
+},
+wins: {
+type: "number",
+format: "double"
+},
+losses: {
+type: "number",
+format: "double"
+},
+totalMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+pace: {
+type: "number",
+format: "double",
+nullable: true
+},
+teamStats: {
+$ref: "#/components/schemas/TeamSeasonUnitStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/TeamSeasonUnitStats"
+}
+},
+required: [
+"season",
+"seasonLabel",
+"teamId",
+"team",
+"conference",
+"games",
+"wins",
+"losses",
+"totalMinutes",
+"pace",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+SeasonType: {
+enum: [
+"postseason",
+"preseason",
+"regular"
+],
+type: "string"
+},
+ShotTypeBreakdown: {
+properties: {
+made: {
+type: "integer",
+format: "int32"
+},
+attempted: {
+type: "integer",
+format: "int32"
+},
+pct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"made",
+"attempted",
+"pct"
+],
+type: "object",
+additionalProperties: false
+},
+SeasonShootingStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+trackedShots: {
+type: "integer",
+format: "int32"
+},
+assistedPct: {
+type: "number",
+format: "double"
+},
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+dunks: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+layups: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+tipIns: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+twoPointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+threePointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+freeThrows: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+attemptsBreakdown: {
+properties: {
+threePointJumpers: {
+type: "number",
+format: "double"
+},
+twoPointJumpers: {
+type: "number",
+format: "double"
+},
+tipIns: {
+type: "number",
+format: "double"
+},
+layups: {
+type: "number",
+format: "double"
+},
+dunks: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"threePointJumpers",
+"twoPointJumpers",
+"tipIns",
+"layups",
+"dunks"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"trackedShots",
+"assistedPct",
+"freeThrowRate",
+"dunks",
+"layups",
+"tipIns",
+"twoPointJumpers",
+"threePointJumpers",
+"freeThrows",
+"attemptsBreakdown"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSeasonStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athleteSourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+position: {
+type: "string"
+},
+games: {
+type: "number",
+format: "double"
+},
+starts: {
+type: "number",
+format: "double"
+},
+minutes: {
+type: "number",
+format: "double"
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+fouls: {
+type: "number",
+format: "double",
+nullable: true
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+usage: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+netRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+PORPAG: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShootingPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+assistsTurnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+winShares: {
+properties: {
+totalPer40: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"totalPer40",
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"seasonLabel",
+"teamId",
+"team",
+"conference",
+"athleteId",
+"athleteSourceId",
+"name",
+"position",
+"games",
+"starts",
+"minutes",
+"points",
+"turnovers",
+"fouls",
+"assists",
+"steals",
+"blocks",
+"usage",
+"offensiveRating",
+"defensiveRating",
+"netRating",
+"PORPAG",
+"effectiveFieldGoalPct",
+"trueShootingPct",
+"assistsTurnoverRatio",
+"freeThrowRate",
+"offensiveReboundPct",
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"winShares"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSeasonShootingStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+trackedShots: {
+type: "integer",
+format: "int32"
+},
+assistedPct: {
+type: "number",
+format: "double"
+},
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+dunks: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+layups: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+tipIns: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+twoPointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+threePointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+freeThrows: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+attemptsBreakdown: {
+properties: {
+threePointJumpers: {
+type: "number",
+format: "double"
+},
+twoPointJumpers: {
+type: "number",
+format: "double"
+},
+tipIns: {
+type: "number",
+format: "double"
+},
+layups: {
+type: "number",
+format: "double"
+},
+dunks: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"threePointJumpers",
+"twoPointJumpers",
+"tipIns",
+"layups",
+"dunks"
+],
+type: "object"
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athleteName: {
+type: "string"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"trackedShots",
+"assistedPct",
+"freeThrowRate",
+"dunks",
+"layups",
+"tipIns",
+"twoPointJumpers",
+"threePointJumpers",
+"freeThrows",
+"attemptsBreakdown",
+"athleteId",
+"athleteName"
+],
+type: "object",
+additionalProperties: false
+},
+Recruit: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string",
+nullable: true
+},
+position: {
+type: "string",
+nullable: true
+},
+schoolId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+school: {
+type: "string",
+nullable: true
+},
+hometown: {
+properties: {
+countyFips: {
+type: "string",
+nullable: true
+},
+longitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+latitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"countyFips",
+"longitude",
+"latitude",
+"country",
+"state",
+"city"
+],
+type: "object",
+nullable: true
+},
+committedTo: {
+properties: {
+conference: {
+type: "string",
+nullable: true
+},
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"conference",
+"name",
+"id"
+],
+type: "object",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+year: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+},
+heightInches: {
+type: "number",
+format: "double",
+nullable: true
+},
+weightPounds: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+stars: {
+type: "integer",
+format: "int32"
+},
+rating: {
+type: "number",
+format: "double"
+},
+ranking: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"position",
+"schoolId",
+"school",
+"hometown",
+"committedTo",
+"athleteId",
+"year",
+"name",
+"heightInches",
+"weightPounds",
+"stars",
+"rating",
+"ranking"
+],
+type: "object",
+additionalProperties: false
+},
+SrsInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+rating: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"rating"
+],
+type: "object",
+additionalProperties: false
+},
+AdjustedEfficiencyInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+offensiveRating: {
+type: "number",
+format: "double"
+},
+defensiveRating: {
+type: "number",
+format: "double"
+},
+netRating: {
+type: "number",
+format: "double"
+},
+rankings: {
+properties: {
+net: {
+type: "number",
+format: "double"
+},
+defense: {
+type: "number",
+format: "double"
+},
+offense: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"net",
+"defense",
+"offense"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"offensiveRating",
+"defensiveRating",
+"netRating",
+"rankings"
+],
+type: "object",
+additionalProperties: false
+},
+PollTeamInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+week: {
+type: "integer",
+format: "int32"
+},
+pollDate: {
+type: "string",
+format: "date-time",
+nullable: true
+},
+pollType: {
+type: "string"
+},
+teamId: {
+type: "number",
+format: "double"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+ranking: {
+type: "number",
+format: "double",
+nullable: true
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+firstPlaceVotes: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"season",
+"seasonType",
+"week",
+"pollDate",
+"pollType",
+"teamId",
+"team",
+"conference",
+"ranking",
+"points",
+"firstPlaceVotes"
+],
+type: "object",
+additionalProperties: false
+},
+ShotInfo: {
+properties: {
+shooter: {
+properties: {
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+made: {
+type: "boolean"
+},
+range: {
+type: "string",
+enum: [
+"rim",
+"jumper",
+"three_pointer",
+"free_throw"
+]
+},
+assisted: {
+type: "boolean"
+},
+assistedBy: {
+properties: {
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+location: {
+properties: {
+y: {
+type: "number",
+format: "double",
+nullable: true
+},
+x: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"y",
+"x"
+],
+type: "object"
+}
+},
+required: [
+"shooter",
+"made",
+"range",
+"assisted",
+"assistedBy",
+"location"
+],
+type: "object",
+additionalProperties: false
+},
+PlayInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+gameId: {
+type: "integer",
+format: "int32"
+},
+gameSourceId: {
+type: "string"
+},
+gameStartDate: {
+type: "string",
+format: "date-time"
+},
+season: {
+type: "number",
+format: "double"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+gameType: {
+type: "string"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+playType: {
+type: "string"
+},
+isHomeTeam: {
+type: "boolean",
+nullable: true
+},
+teamId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+team: {
+type: "string",
+nullable: true
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "number",
+format: "double",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponent: {
+type: "string",
+nullable: true
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "number",
+format: "double",
+nullable: true
+},
+period: {
+type: "integer",
+format: "int32"
+},
+clock: {
+type: "string"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+homeScore: {
+type: "integer",
+format: "int32"
+},
+awayScore: {
+type: "integer",
+format: "int32"
+},
+homeWinProbability: {
+type: "number",
+format: "double",
+nullable: true
+},
+scoringPlay: {
+type: "boolean",
+nullable: true
+},
+shootingPlay: {
+type: "boolean",
+nullable: true
+},
+scoreValue: {
+type: "number",
+format: "double",
+nullable: true
+},
+wallclock: {
+type: "string",
+format: "date-time",
+nullable: true
+},
+playText: {
+type: "string",
+nullable: true
+},
+participants: {
+items: {
+properties: {
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+onFloor: {
+items: {
+properties: {
+team: {
+type: "string"
+},
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"team",
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+shotInfo: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotInfo"
+}
+],
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"gameId",
+"gameSourceId",
+"gameStartDate",
+"season",
+"seasonType",
+"gameType",
+"tournament",
+"playType",
+"isHomeTeam",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"period",
+"clock",
+"secondsRemaining",
+"homeScore",
+"awayScore",
+"homeWinProbability",
+"scoringPlay",
+"shootingPlay",
+"scoreValue",
+"wallclock",
+"playText",
+"participants",
+"onFloor",
+"shotInfo"
+],
+type: "object",
+additionalProperties: false
+},
+PlayTypeInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+}
+},
+required: [
+"id",
+"name"
+],
+type: "object",
+additionalProperties: false
+},
+ShootingStats: {
+properties: {
+made: {
+type: "integer",
+format: "int32"
+},
+attempted: {
+type: "integer",
+format: "int32"
+},
+pct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"made",
+"attempted",
+"pct"
+],
+type: "object",
+additionalProperties: false
+},
+LineupUnitStats: {
+properties: {
+possessions: {
+type: "integer",
+format: "int32"
+},
+points: {
+type: "integer",
+format: "int32"
+},
+blocks: {
+type: "integer",
+format: "int32"
+},
+assists: {
+type: "integer",
+format: "int32"
+},
+steals: {
+type: "integer",
+format: "int32"
+},
+turnovers: {
+type: "integer",
+format: "int32"
+},
+defensiveRebounds: {
+type: "integer",
+format: "int32"
+},
+offensiveRebounds: {
+type: "integer",
+format: "int32"
+},
+trueShooting: {
+type: "number",
+format: "double"
+},
+fieldGoals: {
+$ref: "#/components/schemas/ShootingStats"
+},
+twoPointers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShootingStats"
+},
+{
+properties: {
+jumpers: {
+$ref: "#/components/schemas/ShootingStats"
+},
+layups: {
+$ref: "#/components/schemas/ShootingStats"
+},
+dunks: {
+$ref: "#/components/schemas/ShootingStats"
+},
+tipIns: {
+$ref: "#/components/schemas/ShootingStats"
+}
+},
+required: [
+"jumpers",
+"layups",
+"dunks",
+"tipIns"
+],
+type: "object"
+}
+]
+},
+threePointers: {
+$ref: "#/components/schemas/ShootingStats"
+},
+freeThrows: {
+$ref: "#/components/schemas/ShootingStats"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+offensiveReboundPct: {
+type: "number",
+format: "double"
+},
+turnoverRatio: {
+type: "number",
+format: "double"
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+}
+},
+required: [
+"possessions",
+"points",
+"blocks",
+"assists",
+"steals",
+"turnovers",
+"defensiveRebounds",
+"offensiveRebounds",
+"trueShooting",
+"fieldGoals",
+"twoPointers",
+"threePointers",
+"freeThrows",
+"fourFactors"
+],
+type: "object",
+additionalProperties: false
+},
+LineupStats: {
+properties: {
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+idHash: {
+type: "string"
+},
+athletes: {
+items: {
+properties: {
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+totalSeconds: {
+type: "number",
+format: "double"
+},
+pace: {
+type: "number",
+format: "double"
+},
+offenseRating: {
+type: "number",
+format: "double"
+},
+defenseRating: {
+type: "number",
+format: "double"
+},
+netRating: {
+type: "number",
+format: "double"
+},
+teamStats: {
+$ref: "#/components/schemas/LineupUnitStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/LineupUnitStats"
+}
+},
+required: [
+"teamId",
+"team",
+"conference",
+"idHash",
+"athletes",
+"totalSeconds",
+"pace",
+"offenseRating",
+"defenseRating",
+"netRating",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+GameLineInfo: {
+properties: {
+provider: {
+type: "string"
+},
+spread: {
+type: "number",
+format: "double",
+nullable: true
+},
+overUnder: {
+type: "number",
+format: "double",
+nullable: true
+},
+homeMoneyline: {
+type: "number",
+format: "double",
+nullable: true
+},
+awayMoneyline: {
+type: "number",
+format: "double",
+nullable: true
+},
+spreadOpen: {
+type: "number",
+format: "double",
+nullable: true
+},
+overUnderOpen: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"provider",
+"spread",
+"overUnder",
+"homeMoneyline",
+"awayMoneyline",
+"spreadOpen",
+"overUnderOpen"
+],
+type: "object",
+additionalProperties: false
+},
+GameLines: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+homeScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+awayScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+lines: {
+items: {
+$ref: "#/components/schemas/GameLineInfo"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonType",
+"startDate",
+"homeTeamId",
+"homeTeam",
+"homeConference",
+"homeScore",
+"awayTeamId",
+"awayTeam",
+"awayConference",
+"awayScore",
+"lines"
+],
+type: "object",
+additionalProperties: false
+},
+LineProviderInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+}
+},
+required: [
+"id",
+"name"
+],
+type: "object",
+additionalProperties: false
+},
+GameStatus: {
+enum: [
+"scheduled",
+"in_progress",
+"final",
+"postponed",
+"cancelled"
+],
+type: "string"
+},
+GameInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+seasonLabel: {
+type: "string"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+neutralSite: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+tournament: {
+type: "string",
+nullable: true
+},
+gameNotes: {
+type: "string",
+nullable: true
+},
+status: {
+$ref: "#/components/schemas/GameStatus"
+},
+attendance: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+homeSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homePoints: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homePeriodPoints: {
+items: {
+type: "integer",
+format: "int32"
+},
+type: "array",
+nullable: true
+},
+homeWinner: {
+type: "boolean",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+awaySeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayPoints: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayPeriodPoints: {
+items: {
+type: "integer",
+format: "int32"
+},
+type: "array",
+nullable: true
+},
+awayWinner: {
+type: "boolean",
+nullable: true
+},
+excitement: {
+type: "number",
+format: "double",
+nullable: true
+},
+venueId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+venue: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"seasonLabel",
+"season",
+"seasonType",
+"startDate",
+"startTimeTbd",
+"neutralSite",
+"conferenceGame",
+"gameType",
+"tournament",
+"gameNotes",
+"status",
+"attendance",
+"homeTeamId",
+"homeTeam",
+"homeConferenceId",
+"homeConference",
+"homeSeed",
+"homePoints",
+"homePeriodPoints",
+"homeWinner",
+"awayTeamId",
+"awayTeam",
+"awayConferenceId",
+"awayConference",
+"awaySeed",
+"awayPoints",
+"awayPeriodPoints",
+"awayWinner",
+"excitement",
+"venueId",
+"venue",
+"city",
+"state"
+],
+type: "object",
+additionalProperties: false
+},
+GameMediaInfo: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+broadcasts: {
+items: {
+properties: {
+broadcastName: {
+type: "string"
+},
+broadcastType: {
+type: "string"
+}
+},
+required: [
+"broadcastName",
+"broadcastType"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"homeTeamId",
+"homeTeam",
+"homeConference",
+"awayTeamId",
+"awayTeam",
+"awayConference",
+"neutralSite",
+"conferenceGame",
+"gameType",
+"notes",
+"broadcasts"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScoreTeamStats: {
+properties: {
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+turnovers: {
+properties: {
+teamTotal: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"teamTotal",
+"total"
+],
+type: "object"
+},
+fouls: {
+properties: {
+flagrant: {
+type: "number",
+format: "double",
+nullable: true
+},
+technical: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"flagrant",
+"technical",
+"total"
+],
+type: "object"
+},
+points: {
+properties: {
+fastBreak: {
+type: "number",
+format: "double",
+nullable: true
+},
+offTurnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+inPaint: {
+type: "number",
+format: "double",
+nullable: true
+},
+byPeriod: {
+items: {
+type: "number",
+format: "double"
+},
+type: "array",
+nullable: true
+},
+largestLead: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fastBreak",
+"offTurnovers",
+"inPaint",
+"byPeriod",
+"largestLead",
+"total"
+],
+type: "object"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+possessions: {
+type: "number",
+format: "double",
+nullable: true
+},
+rating: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShooting: {
+type: "number",
+format: "double",
+nullable: true
+},
+gameScore: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"turnovers",
+"fouls",
+"points",
+"fourFactors",
+"assists",
+"blocks",
+"steals",
+"possessions",
+"rating",
+"trueShooting",
+"gameScore"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScoreTeam: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+isHome: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+gameMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+pace: {
+type: "number",
+format: "double",
+nullable: true
+},
+teamStats: {
+$ref: "#/components/schemas/GameBoxScoreTeamStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/GameBoxScoreTeamStats"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"neutralSite",
+"isHome",
+"conferenceGame",
+"gameType",
+"notes",
+"gameMinutes",
+"pace",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScorePlayers: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+isHome: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+gameMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+gamePace: {
+type: "number",
+format: "double",
+nullable: true
+},
+players: {
+items: {
+properties: {
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+assistsTurnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+gameScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShootingPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+netRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+usage: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+fouls: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+minutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+ejected: {
+type: "boolean",
+nullable: true
+},
+starter: {
+type: "boolean",
+nullable: true
+},
+position: {
+type: "string"
+},
+name: {
+type: "string"
+},
+athleteSourceId: {
+type: "string"
+},
+athleteId: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"rebounds",
+"freeThrows",
+"threePointFieldGoals",
+"twoPointFieldGoals",
+"fieldGoals",
+"offensiveReboundPct",
+"freeThrowRate",
+"assistsTurnoverRatio",
+"gameScore",
+"trueShootingPct",
+"effectiveFieldGoalPct",
+"netRating",
+"defensiveRating",
+"offensiveRating",
+"usage",
+"blocks",
+"steals",
+"assists",
+"fouls",
+"turnovers",
+"points",
+"minutes",
+"ejected",
+"starter",
+"position",
+"name",
+"athleteSourceId",
+"athleteId"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"neutralSite",
+"isHome",
+"conferenceGame",
+"gameType",
+"notes",
+"gameMinutes",
+"gamePace",
+"players"
+],
+type: "object",
+additionalProperties: false
+},
+DraftTeam: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "number",
+format: "double"
+},
+location: {
+type: "string"
+},
+name: {
+type: "string"
+},
+displayName: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+}
+},
+required: [
+"id",
+"sourceId",
+"location",
+"name",
+"displayName",
+"abbreviation"
+],
+type: "object",
+additionalProperties: false
+},
+DraftPosition: {
+properties: {
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+}
+},
+required: [
+"name",
+"abbreviation"
+],
+type: "object",
+additionalProperties: false
+},
+DraftPick: {
+properties: {
+athleteId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+sourceTeamId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+sourceTeamLocation: {
+type: "string",
+nullable: true
+},
+sourceTeamName: {
+type: "string",
+nullable: true
+},
+sourceTeamLeagueAffiliation: {
+type: "string",
+nullable: true
+},
+sourceTeamCollegeId: {
+type: "number",
+format: "double",
+nullable: true
+},
+draftTeamId: {
+type: "number",
+format: "double"
+},
+draftTeam: {
+type: "string"
+},
+year: {
+type: "integer",
+format: "int32"
+},
+overall: {
+type: "integer",
+format: "int32"
+},
+round: {
+type: "integer",
+format: "int32"
+},
+pick: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+},
+overallRank: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+positionRank: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+height: {
+type: "number",
+format: "double",
+nullable: true
+},
+weight: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"athleteId",
+"sourceTeamId",
+"sourceTeamLocation",
+"sourceTeamName",
+"sourceTeamLeagueAffiliation",
+"sourceTeamCollegeId",
+"draftTeamId",
+"draftTeam",
+"year",
+"overall",
+"round",
+"pick",
+"name",
+"overallRank",
+"positionRank",
+"height",
+"weight"
+],
+type: "object",
+additionalProperties: false
+},
+ConferenceInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+},
+shortName: {
+type: "string"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"abbreviation",
+"shortName"
+],
+type: "object",
+additionalProperties: false
+},
+ConferenceHistory: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+},
+shortName: {
+type: "string"
+},
+teams: {
+items: {
+properties: {
+endSeason: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+startSeason: {
+type: "integer",
+format: "int32"
+},
+mascot: {
+type: "string",
+nullable: true
+},
+school: {
+type: "string"
+},
+sourceId: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"endSeason",
+"startSeason",
+"mascot",
+"school",
+"sourceId",
+"id"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"abbreviation",
+"shortName",
+"teams"
+],
+type: "object",
+additionalProperties: false
+}
+},
+securitySchemes: {
+apiKey: {
+type: "http",
+scheme: "bearer"
+}
+}
+},
+info: {
+title: "College Basketball Data API",
+version: "1.22.4",
+description: "This is an API for query various college basketball datasets and analytics. API keys can be acquired by registering on the CollegeBasketballData.com website.",
+license: {
+name: "MIT"
+},
+contact: {
+email: "admin@collegefootballdata.com",
+name: "the developer"
+}
+},
+paths: {
+/venues: {
+get: {
+operationId: "GetVenues",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/VenueInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of available venues",
+tags: [
+"venues"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/teams: {
+get: {
+operationId: "GetTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical team information",
+tags: [
+"teams"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/teams/roster: {
+get: {
+operationId: "GetTeamRoster",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamRoster"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves team roster information",
+tags: [
+"teams"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/substitutions/game/{gameId}: {
+get: {
+operationId: "GetSubstitutionsByGame",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns all player substitutions for a given game",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/substitutions/player/{playerId}: {
+get: {
+operationId: "GetSubstitutionsByPlayerId",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all player substitutions for a given player and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required player id filter",
+in: "path",
+name: "playerId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/substitutions/team: {
+get: {
+operationId: "GetSubstitutionsByTeam",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all player substitutions for a given team and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/stats/team/season: {
+get: {
+operationId: "GetTeamSeasonStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamSeasonStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns team season statistics by year or team",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter, required if team is not provided",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional team name filter, required if season is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/team/shooting/season: {
+get: {
+operationId: "GetTeamSeasonShootingStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/SeasonShootingStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves team season shooting statistics",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Team filter, required if conference is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Conference abbreviation filter, required if team is not provided",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/player/season: {
+get: {
+operationId: "GetPlayerSeasonStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSeasonStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns player statistics by season",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/player/shooting/season: {
+get: {
+operationId: "GetPlayerSeasonShootingStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSeasonShootingStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves player season shooting statistics",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Team filter, required if conference is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Conference abbreviation filter, required if team is not provided",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/recruiting/players: {
+get: {
+operationId: "GetRecruits",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/Recruit"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical composite player recruiting ranking and ratings",
+tags: [
+"recruiting"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional year filter",
+in: "query",
+name: "year",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional college team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional college conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional position filter",
+in: "query",
+name: "position",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/ratings/srs: {
+get: {
+operationId: "GetSrs",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/SrsInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves SRS ratings for the provided season, team, or conference.",
+tags: [
+"ratings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/ratings/adjusted: {
+get: {
+operationId: "GetAdjustedEfficiency",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/AdjustedEfficiencyInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves adjusted efficiency ratings for the provided season, team, or conference.",
+tags: [
+"ratings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/rankings: {
+get: {
+operationId: "GetRankings",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PollTeamInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical poll data",
+tags: [
+"rankings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional week filter",
+in: "query",
+name: "week",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional poll type filter ("ap" or "coaches")",
+in: "query",
+name: "pollType",
+required: false,
+schema: {
+type: "string",
+enum: [
+"ap",
+"coaches"
+]
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/plays/game/{gameId}: {
+get: {
+operationId: "GetPlays",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns all plays for a given game",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/player/{playerId}: {
+get: {
+operationId: "GetPlaysByPlayerId",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given player and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required player id filter",
+in: "path",
+name: "playerId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/team: {
+get: {
+operationId: "GetPlaysByTeam",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given team and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/date: {
+get: {
+operationId: "GetPlaysByDate",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given UTC date",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required date filter in ISO 8601 format (YYYY-MM-DD)",
+in: "query",
+name: "date",
+required: true,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+},
+{
+description: "Optional UTC offset in hours to adjust the date range",
+in: "query",
+name: "utcOffset",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+}
+]
+}
+},
+/plays/tournament: {
+get: {
+operationId: "GetPlaysByTournament",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given tournament and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/types: {
+get: {
+operationId: "GetPlayTypes",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayTypeInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve list of play types",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/lineups/team: {
+get: {
+operationId: "GetLineupsByTeamSeason",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineupStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Queries lineup statistics for a given team and season",
+tags: [
+"lineups"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/lineups/game/{gameId}: {
+get: {
+operationId: "GetLineupStatsByGame",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineupStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Queries lineup statistics for a specific game",
+tags: [
+"lineups"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/lines: {
+get: {
+operationId: "GetLines",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameLines"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns betting lines for the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"lines"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/lines/providers: {
+get: {
+operationId: "GetProviders",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineProviderInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns a list of available line providers",
+tags: [
+"lines"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/games: {
+get: {
+operationId: "GetGames",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns information on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional game status filter",
+in: "query",
+name: "status",
+required: false,
+schema: {
+$ref: "#/components/schemas/GameStatus"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/media: {
+get: {
+operationId: "GetBroadcasts",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameMediaInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns broadcast information on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/teams: {
+get: {
+operationId: "GetGameTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameBoxScoreTeam"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns team box score statistics and metrics on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/players: {
+get: {
+operationId: "GetGamePlayers",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameBoxScorePlayers"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns player box score statistics and metrics on the first 1000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/draft/teams: {
+get: {
+operationId: "GetDraftTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftTeam"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of NBA teams",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/draft/positions: {
+get: {
+operationId: "GetDraftPositions",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftPosition"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of position names for NBA draft prospects",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/draft/picks: {
+get: {
+operationId: "GetDraftPicks",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftPick"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical NBA draft picks",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional draft year filter",
+in: "query",
+name: "year",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional NBA team filter",
+in: "query",
+name: "draftTeam",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional source team (e.g. NCAA) filter",
+in: "query",
+name: "sourceTeam",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional player position abbreviation filter",
+in: "query",
+name: "position",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/conferences: {
+get: {
+operationId: "GetConferences",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/ConferenceInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of available conferences",
+tags: [
+"conferences"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/conferences/history: {
+get: {
+operationId: "GetConferenceHistory",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/ConferenceHistory"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical conference membership information",
+tags: [
+"conferences"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+}
+},
+servers: [
+{
+url: "https://api.collegebasketballdata.com/"
+}
+],
+tags: [
+{
+name: "games",
+description: "Games scores and statistics"
+},
+{
+name: "plays",
+description: "Play by play data"
+},
+{
+name: "teams",
+description: "Team information"
+},
+{
+name: "conferences",
+description: "Conference information"
+},
+{
+name: "venues",
+description: "Information about venues"
+},
+{
+name: "stats",
+description: "Statistical data"
+},
+{
+name: "rankings",
+description: "Historical polls and rankings"
+},
+{
+name: "ratings",
+description: "Historical ratings systems"
+},
+{
+name: "lines",
+description: "Historical spreads and betting data"
+},
+{
+name: "lineups",
+description: "Statistics and data around specific lineups"
+},
+{
+name: "draft",
+description: "Historical NBA draft data"
+},
+{
+name: "recruiting",
+description: "Historical recruiting data"
+}
+],
+default: {
+openapi: "3.0.0",
+components: {
+examples: { },
+headers: { },
+parameters: { },
+requestBodies: { },
+responses: { },
+schemas: {
+VenueInfo: {
+properties: {
+id: {
+type: "number",
+format: "double"
+},
+sourceId: {
+type: "string",
+nullable: true
+},
+name: {
+type: "string"
+},
+city: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"city",
+"state",
+"country"
+],
+type: "object",
+additionalProperties: false
+},
+TeamInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+school: {
+type: "string"
+},
+mascot: {
+type: "string",
+nullable: true
+},
+abbreviation: {
+type: "string",
+nullable: true
+},
+displayName: {
+type: "string",
+nullable: true
+},
+shortDisplayName: {
+type: "string",
+nullable: true
+},
+primaryColor: {
+type: "string",
+nullable: true
+},
+secondaryColor: {
+type: "string",
+nullable: true
+},
+currentVenueId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+currentVenue: {
+type: "string",
+nullable: true
+},
+currentCity: {
+type: "string",
+nullable: true
+},
+currentState: {
+type: "string",
+nullable: true
+},
+conferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+conference: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"school",
+"mascot",
+"abbreviation",
+"displayName",
+"shortDisplayName",
+"primaryColor",
+"secondaryColor",
+"currentVenueId",
+"currentVenue",
+"currentCity",
+"currentState",
+"conferenceId",
+"conference"
+],
+type: "object",
+additionalProperties: false
+},
+TeamRosterPlayer: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+firstName: {
+type: "string",
+nullable: true
+},
+lastName: {
+type: "string",
+nullable: true
+},
+jersey: {
+type: "string",
+nullable: true
+},
+position: {
+type: "string",
+nullable: true
+},
+height: {
+type: "number",
+format: "double",
+nullable: true
+},
+weight: {
+type: "number",
+format: "double",
+nullable: true
+},
+hometown: {
+properties: {
+countyFips: {
+type: "string",
+nullable: true
+},
+longitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+latitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"countyFips",
+"longitude",
+"latitude",
+"country",
+"state",
+"city"
+],
+type: "object"
+},
+dateOfBirth: {
+type: "string",
+format: "date",
+nullable: true
+},
+startSeason: {
+type: "number",
+format: "double"
+},
+endSeason: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"firstName",
+"lastName",
+"jersey",
+"position",
+"height",
+"weight",
+"hometown",
+"dateOfBirth",
+"startSeason",
+"endSeason"
+],
+type: "object",
+additionalProperties: false
+},
+TeamRoster: {
+properties: {
+teamId: {
+type: "integer",
+format: "int32"
+},
+teamSourceId: {
+type: "string"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+season: {
+type: "number",
+format: "double"
+},
+players: {
+items: {
+$ref: "#/components/schemas/TeamRosterPlayer"
+},
+type: "array"
+}
+},
+required: [
+"teamId",
+"teamSourceId",
+"team",
+"conference",
+"season",
+"players"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSubsititution: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athlete: {
+type: "string"
+},
+position: {
+type: "string",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+subIn: {
+properties: {
+opponentPoints: {
+type: "integer",
+format: "int32"
+},
+teamPoints: {
+type: "integer",
+format: "int32"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+period: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"opponentPoints",
+"teamPoints",
+"secondsRemaining",
+"period"
+],
+type: "object"
+},
+subOut: {
+properties: {
+opponentPoints: {
+type: "integer",
+format: "int32"
+},
+teamPoints: {
+type: "integer",
+format: "int32"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+period: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"opponentPoints",
+"teamPoints",
+"secondsRemaining",
+"period"
+],
+type: "object"
+}
+},
+required: [
+"gameId",
+"startDate",
+"teamId",
+"team",
+"conference",
+"athleteId",
+"athlete",
+"position",
+"opponentId",
+"opponent",
+"opponentConference",
+"subIn",
+"subOut"
+],
+type: "object",
+additionalProperties: false
+},
+TeamSeasonUnitStats: {
+properties: {
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+turnovers: {
+properties: {
+teamTotal: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"teamTotal",
+"total"
+],
+type: "object"
+},
+fouls: {
+properties: {
+flagrant: {
+type: "number",
+format: "double",
+nullable: true
+},
+technical: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"flagrant",
+"technical",
+"total"
+],
+type: "object"
+},
+points: {
+properties: {
+fastBreak: {
+type: "number",
+format: "double",
+nullable: true
+},
+offTurnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+inPaint: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fastBreak",
+"offTurnovers",
+"inPaint",
+"total"
+],
+type: "object"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+possessions: {
+type: "number",
+format: "double",
+nullable: true
+},
+rating: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShooting: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"turnovers",
+"fouls",
+"points",
+"fourFactors",
+"assists",
+"blocks",
+"steals",
+"possessions",
+"rating",
+"trueShooting"
+],
+type: "object",
+additionalProperties: false
+},
+TeamSeasonStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+games: {
+type: "integer",
+format: "int32"
+},
+wins: {
+type: "number",
+format: "double"
+},
+losses: {
+type: "number",
+format: "double"
+},
+totalMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+pace: {
+type: "number",
+format: "double",
+nullable: true
+},
+teamStats: {
+$ref: "#/components/schemas/TeamSeasonUnitStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/TeamSeasonUnitStats"
+}
+},
+required: [
+"season",
+"seasonLabel",
+"teamId",
+"team",
+"conference",
+"games",
+"wins",
+"losses",
+"totalMinutes",
+"pace",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+SeasonType: {
+enum: [
+"postseason",
+"preseason",
+"regular"
+],
+type: "string"
+},
+ShotTypeBreakdown: {
+properties: {
+made: {
+type: "integer",
+format: "int32"
+},
+attempted: {
+type: "integer",
+format: "int32"
+},
+pct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"made",
+"attempted",
+"pct"
+],
+type: "object",
+additionalProperties: false
+},
+SeasonShootingStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+trackedShots: {
+type: "integer",
+format: "int32"
+},
+assistedPct: {
+type: "number",
+format: "double"
+},
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+dunks: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+layups: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+tipIns: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+twoPointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+threePointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+freeThrows: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+attemptsBreakdown: {
+properties: {
+threePointJumpers: {
+type: "number",
+format: "double"
+},
+twoPointJumpers: {
+type: "number",
+format: "double"
+},
+tipIns: {
+type: "number",
+format: "double"
+},
+layups: {
+type: "number",
+format: "double"
+},
+dunks: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"threePointJumpers",
+"twoPointJumpers",
+"tipIns",
+"layups",
+"dunks"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"trackedShots",
+"assistedPct",
+"freeThrowRate",
+"dunks",
+"layups",
+"tipIns",
+"twoPointJumpers",
+"threePointJumpers",
+"freeThrows",
+"attemptsBreakdown"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSeasonStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athleteSourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+position: {
+type: "string"
+},
+games: {
+type: "number",
+format: "double"
+},
+starts: {
+type: "number",
+format: "double"
+},
+minutes: {
+type: "number",
+format: "double"
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+fouls: {
+type: "number",
+format: "double",
+nullable: true
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+usage: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+netRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+PORPAG: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShootingPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+assistsTurnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+winShares: {
+properties: {
+totalPer40: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"totalPer40",
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"seasonLabel",
+"teamId",
+"team",
+"conference",
+"athleteId",
+"athleteSourceId",
+"name",
+"position",
+"games",
+"starts",
+"minutes",
+"points",
+"turnovers",
+"fouls",
+"assists",
+"steals",
+"blocks",
+"usage",
+"offensiveRating",
+"defensiveRating",
+"netRating",
+"PORPAG",
+"effectiveFieldGoalPct",
+"trueShootingPct",
+"assistsTurnoverRatio",
+"freeThrowRate",
+"offensiveReboundPct",
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"winShares"
+],
+type: "object",
+additionalProperties: false
+},
+PlayerSeasonShootingStats: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+trackedShots: {
+type: "integer",
+format: "int32"
+},
+assistedPct: {
+type: "number",
+format: "double"
+},
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+dunks: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+layups: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+tipIns: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+twoPointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+threePointJumpers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+{
+properties: {
+assistedPct: {
+type: "number",
+format: "double"
+},
+assisted: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"assistedPct",
+"assisted"
+],
+type: "object"
+}
+]
+},
+freeThrows: {
+$ref: "#/components/schemas/ShotTypeBreakdown"
+},
+attemptsBreakdown: {
+properties: {
+threePointJumpers: {
+type: "number",
+format: "double"
+},
+twoPointJumpers: {
+type: "number",
+format: "double"
+},
+tipIns: {
+type: "number",
+format: "double"
+},
+layups: {
+type: "number",
+format: "double"
+},
+dunks: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"threePointJumpers",
+"twoPointJumpers",
+"tipIns",
+"layups",
+"dunks"
+],
+type: "object"
+},
+athleteId: {
+type: "integer",
+format: "int32"
+},
+athleteName: {
+type: "string"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"trackedShots",
+"assistedPct",
+"freeThrowRate",
+"dunks",
+"layups",
+"tipIns",
+"twoPointJumpers",
+"threePointJumpers",
+"freeThrows",
+"attemptsBreakdown",
+"athleteId",
+"athleteName"
+],
+type: "object",
+additionalProperties: false
+},
+Recruit: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string",
+nullable: true
+},
+position: {
+type: "string",
+nullable: true
+},
+schoolId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+school: {
+type: "string",
+nullable: true
+},
+hometown: {
+properties: {
+countyFips: {
+type: "string",
+nullable: true
+},
+longitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+latitude: {
+type: "number",
+format: "double",
+nullable: true
+},
+country: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"countyFips",
+"longitude",
+"latitude",
+"country",
+"state",
+"city"
+],
+type: "object",
+nullable: true
+},
+committedTo: {
+properties: {
+conference: {
+type: "string",
+nullable: true
+},
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"conference",
+"name",
+"id"
+],
+type: "object",
+nullable: true
+},
+athleteId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+year: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+},
+heightInches: {
+type: "number",
+format: "double",
+nullable: true
+},
+weightPounds: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+stars: {
+type: "integer",
+format: "int32"
+},
+rating: {
+type: "number",
+format: "double"
+},
+ranking: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"position",
+"schoolId",
+"school",
+"hometown",
+"committedTo",
+"athleteId",
+"year",
+"name",
+"heightInches",
+"weightPounds",
+"stars",
+"rating",
+"ranking"
+],
+type: "object",
+additionalProperties: false
+},
+SrsInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+rating: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"rating"
+],
+type: "object",
+additionalProperties: false
+},
+AdjustedEfficiencyInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+offensiveRating: {
+type: "number",
+format: "double"
+},
+defensiveRating: {
+type: "number",
+format: "double"
+},
+netRating: {
+type: "number",
+format: "double"
+},
+rankings: {
+properties: {
+net: {
+type: "number",
+format: "double"
+},
+defense: {
+type: "number",
+format: "double"
+},
+offense: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"net",
+"defense",
+"offense"
+],
+type: "object"
+}
+},
+required: [
+"season",
+"teamId",
+"team",
+"conference",
+"offensiveRating",
+"defensiveRating",
+"netRating",
+"rankings"
+],
+type: "object",
+additionalProperties: false
+},
+PollTeamInfo: {
+properties: {
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+week: {
+type: "integer",
+format: "int32"
+},
+pollDate: {
+type: "string",
+format: "date-time",
+nullable: true
+},
+pollType: {
+type: "string"
+},
+teamId: {
+type: "number",
+format: "double"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+ranking: {
+type: "number",
+format: "double",
+nullable: true
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+firstPlaceVotes: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"season",
+"seasonType",
+"week",
+"pollDate",
+"pollType",
+"teamId",
+"team",
+"conference",
+"ranking",
+"points",
+"firstPlaceVotes"
+],
+type: "object",
+additionalProperties: false
+},
+ShotInfo: {
+properties: {
+shooter: {
+properties: {
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+made: {
+type: "boolean"
+},
+range: {
+type: "string",
+enum: [
+"rim",
+"jumper",
+"three_pointer",
+"free_throw"
+]
+},
+assisted: {
+type: "boolean"
+},
+assistedBy: {
+properties: {
+name: {
+type: "string",
+nullable: true
+},
+id: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+location: {
+properties: {
+y: {
+type: "number",
+format: "double",
+nullable: true
+},
+x: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"y",
+"x"
+],
+type: "object"
+}
+},
+required: [
+"shooter",
+"made",
+"range",
+"assisted",
+"assistedBy",
+"location"
+],
+type: "object",
+additionalProperties: false
+},
+PlayInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+gameId: {
+type: "integer",
+format: "int32"
+},
+gameSourceId: {
+type: "string"
+},
+gameStartDate: {
+type: "string",
+format: "date-time"
+},
+season: {
+type: "number",
+format: "double"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+gameType: {
+type: "string"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+playType: {
+type: "string"
+},
+isHomeTeam: {
+type: "boolean",
+nullable: true
+},
+teamId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+team: {
+type: "string",
+nullable: true
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "number",
+format: "double",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponent: {
+type: "string",
+nullable: true
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "number",
+format: "double",
+nullable: true
+},
+period: {
+type: "integer",
+format: "int32"
+},
+clock: {
+type: "string"
+},
+secondsRemaining: {
+type: "integer",
+format: "int32"
+},
+homeScore: {
+type: "integer",
+format: "int32"
+},
+awayScore: {
+type: "integer",
+format: "int32"
+},
+homeWinProbability: {
+type: "number",
+format: "double",
+nullable: true
+},
+scoringPlay: {
+type: "boolean",
+nullable: true
+},
+shootingPlay: {
+type: "boolean",
+nullable: true
+},
+scoreValue: {
+type: "number",
+format: "double",
+nullable: true
+},
+wallclock: {
+type: "string",
+format: "date-time",
+nullable: true
+},
+playText: {
+type: "string",
+nullable: true
+},
+participants: {
+items: {
+properties: {
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+onFloor: {
+items: {
+properties: {
+team: {
+type: "string"
+},
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"team",
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+shotInfo: {
+allOf: [
+{
+$ref: "#/components/schemas/ShotInfo"
+}
+],
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"gameId",
+"gameSourceId",
+"gameStartDate",
+"season",
+"seasonType",
+"gameType",
+"tournament",
+"playType",
+"isHomeTeam",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"period",
+"clock",
+"secondsRemaining",
+"homeScore",
+"awayScore",
+"homeWinProbability",
+"scoringPlay",
+"shootingPlay",
+"scoreValue",
+"wallclock",
+"playText",
+"participants",
+"onFloor",
+"shotInfo"
+],
+type: "object",
+additionalProperties: false
+},
+PlayTypeInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+}
+},
+required: [
+"id",
+"name"
+],
+type: "object",
+additionalProperties: false
+},
+ShootingStats: {
+properties: {
+made: {
+type: "integer",
+format: "int32"
+},
+attempted: {
+type: "integer",
+format: "int32"
+},
+pct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"made",
+"attempted",
+"pct"
+],
+type: "object",
+additionalProperties: false
+},
+LineupUnitStats: {
+properties: {
+possessions: {
+type: "integer",
+format: "int32"
+},
+points: {
+type: "integer",
+format: "int32"
+},
+blocks: {
+type: "integer",
+format: "int32"
+},
+assists: {
+type: "integer",
+format: "int32"
+},
+steals: {
+type: "integer",
+format: "int32"
+},
+turnovers: {
+type: "integer",
+format: "int32"
+},
+defensiveRebounds: {
+type: "integer",
+format: "int32"
+},
+offensiveRebounds: {
+type: "integer",
+format: "int32"
+},
+trueShooting: {
+type: "number",
+format: "double"
+},
+fieldGoals: {
+$ref: "#/components/schemas/ShootingStats"
+},
+twoPointers: {
+allOf: [
+{
+$ref: "#/components/schemas/ShootingStats"
+},
+{
+properties: {
+jumpers: {
+$ref: "#/components/schemas/ShootingStats"
+},
+layups: {
+$ref: "#/components/schemas/ShootingStats"
+},
+dunks: {
+$ref: "#/components/schemas/ShootingStats"
+},
+tipIns: {
+$ref: "#/components/schemas/ShootingStats"
+}
+},
+required: [
+"jumpers",
+"layups",
+"dunks",
+"tipIns"
+],
+type: "object"
+}
+]
+},
+threePointers: {
+$ref: "#/components/schemas/ShootingStats"
+},
+freeThrows: {
+$ref: "#/components/schemas/ShootingStats"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double"
+},
+offensiveReboundPct: {
+type: "number",
+format: "double"
+},
+turnoverRatio: {
+type: "number",
+format: "double"
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double"
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+}
+},
+required: [
+"possessions",
+"points",
+"blocks",
+"assists",
+"steals",
+"turnovers",
+"defensiveRebounds",
+"offensiveRebounds",
+"trueShooting",
+"fieldGoals",
+"twoPointers",
+"threePointers",
+"freeThrows",
+"fourFactors"
+],
+type: "object",
+additionalProperties: false
+},
+LineupStats: {
+properties: {
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string"
+},
+idHash: {
+type: "string"
+},
+athletes: {
+items: {
+properties: {
+name: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"name",
+"id"
+],
+type: "object"
+},
+type: "array"
+},
+totalSeconds: {
+type: "number",
+format: "double"
+},
+pace: {
+type: "number",
+format: "double"
+},
+offenseRating: {
+type: "number",
+format: "double"
+},
+defenseRating: {
+type: "number",
+format: "double"
+},
+netRating: {
+type: "number",
+format: "double"
+},
+teamStats: {
+$ref: "#/components/schemas/LineupUnitStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/LineupUnitStats"
+}
+},
+required: [
+"teamId",
+"team",
+"conference",
+"idHash",
+"athletes",
+"totalSeconds",
+"pace",
+"offenseRating",
+"defenseRating",
+"netRating",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+GameLineInfo: {
+properties: {
+provider: {
+type: "string"
+},
+spread: {
+type: "number",
+format: "double",
+nullable: true
+},
+overUnder: {
+type: "number",
+format: "double",
+nullable: true
+},
+homeMoneyline: {
+type: "number",
+format: "double",
+nullable: true
+},
+awayMoneyline: {
+type: "number",
+format: "double",
+nullable: true
+},
+spreadOpen: {
+type: "number",
+format: "double",
+nullable: true
+},
+overUnderOpen: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"provider",
+"spread",
+"overUnder",
+"homeMoneyline",
+"awayMoneyline",
+"spreadOpen",
+"overUnderOpen"
+],
+type: "object",
+additionalProperties: false
+},
+GameLines: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+homeScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+awayScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+lines: {
+items: {
+$ref: "#/components/schemas/GameLineInfo"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonType",
+"startDate",
+"homeTeamId",
+"homeTeam",
+"homeConference",
+"homeScore",
+"awayTeamId",
+"awayTeam",
+"awayConference",
+"awayScore",
+"lines"
+],
+type: "object",
+additionalProperties: false
+},
+LineProviderInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+}
+},
+required: [
+"id",
+"name"
+],
+type: "object",
+additionalProperties: false
+},
+GameStatus: {
+enum: [
+"scheduled",
+"in_progress",
+"final",
+"postponed",
+"cancelled"
+],
+type: "string"
+},
+GameInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+seasonLabel: {
+type: "string"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+neutralSite: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+tournament: {
+type: "string",
+nullable: true
+},
+gameNotes: {
+type: "string",
+nullable: true
+},
+status: {
+$ref: "#/components/schemas/GameStatus"
+},
+attendance: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+homeSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homePoints: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+homePeriodPoints: {
+items: {
+type: "integer",
+format: "int32"
+},
+type: "array",
+nullable: true
+},
+homeWinner: {
+type: "boolean",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConferenceId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+awaySeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayPoints: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+awayPeriodPoints: {
+items: {
+type: "integer",
+format: "int32"
+},
+type: "array",
+nullable: true
+},
+awayWinner: {
+type: "boolean",
+nullable: true
+},
+excitement: {
+type: "number",
+format: "double",
+nullable: true
+},
+venueId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+venue: {
+type: "string",
+nullable: true
+},
+city: {
+type: "string",
+nullable: true
+},
+state: {
+type: "string",
+nullable: true
+}
+},
+required: [
+"id",
+"sourceId",
+"seasonLabel",
+"season",
+"seasonType",
+"startDate",
+"startTimeTbd",
+"neutralSite",
+"conferenceGame",
+"gameType",
+"tournament",
+"gameNotes",
+"status",
+"attendance",
+"homeTeamId",
+"homeTeam",
+"homeConferenceId",
+"homeConference",
+"homeSeed",
+"homePoints",
+"homePeriodPoints",
+"homeWinner",
+"awayTeamId",
+"awayTeam",
+"awayConferenceId",
+"awayConference",
+"awaySeed",
+"awayPoints",
+"awayPeriodPoints",
+"awayWinner",
+"excitement",
+"venueId",
+"venue",
+"city",
+"state"
+],
+type: "object",
+additionalProperties: false
+},
+GameMediaInfo: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+homeTeamId: {
+type: "integer",
+format: "int32"
+},
+homeTeam: {
+type: "string"
+},
+homeConference: {
+type: "string",
+nullable: true
+},
+awayTeamId: {
+type: "integer",
+format: "int32"
+},
+awayTeam: {
+type: "string"
+},
+awayConference: {
+type: "string",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+broadcasts: {
+items: {
+properties: {
+broadcastName: {
+type: "string"
+},
+broadcastType: {
+type: "string"
+}
+},
+required: [
+"broadcastName",
+"broadcastType"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"homeTeamId",
+"homeTeam",
+"homeConference",
+"awayTeamId",
+"awayTeam",
+"awayConference",
+"neutralSite",
+"conferenceGame",
+"gameType",
+"notes",
+"broadcasts"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScoreTeamStats: {
+properties: {
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+turnovers: {
+properties: {
+teamTotal: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"teamTotal",
+"total"
+],
+type: "object"
+},
+fouls: {
+properties: {
+flagrant: {
+type: "number",
+format: "double",
+nullable: true
+},
+technical: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"flagrant",
+"technical",
+"total"
+],
+type: "object"
+},
+points: {
+properties: {
+fastBreak: {
+type: "number",
+format: "double",
+nullable: true
+},
+offTurnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+inPaint: {
+type: "number",
+format: "double",
+nullable: true
+},
+byPeriod: {
+items: {
+type: "number",
+format: "double"
+},
+type: "array",
+nullable: true
+},
+largestLead: {
+type: "number",
+format: "double",
+nullable: true
+},
+total: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fastBreak",
+"offTurnovers",
+"inPaint",
+"byPeriod",
+"largestLead",
+"total"
+],
+type: "object"
+},
+fourFactors: {
+properties: {
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"freeThrowRate",
+"offensiveReboundPct",
+"turnoverRatio",
+"effectiveFieldGoalPct"
+],
+type: "object"
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+possessions: {
+type: "number",
+format: "double",
+nullable: true
+},
+rating: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShooting: {
+type: "number",
+format: "double",
+nullable: true
+},
+gameScore: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"fieldGoals",
+"twoPointFieldGoals",
+"threePointFieldGoals",
+"freeThrows",
+"rebounds",
+"turnovers",
+"fouls",
+"points",
+"fourFactors",
+"assists",
+"blocks",
+"steals",
+"possessions",
+"rating",
+"trueShooting",
+"gameScore"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScoreTeam: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+isHome: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+gameMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+pace: {
+type: "number",
+format: "double",
+nullable: true
+},
+teamStats: {
+$ref: "#/components/schemas/GameBoxScoreTeamStats"
+},
+opponentStats: {
+$ref: "#/components/schemas/GameBoxScoreTeamStats"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"neutralSite",
+"isHome",
+"conferenceGame",
+"gameType",
+"notes",
+"gameMinutes",
+"pace",
+"teamStats",
+"opponentStats"
+],
+type: "object",
+additionalProperties: false
+},
+GameBoxScorePlayers: {
+properties: {
+gameId: {
+type: "integer",
+format: "int32"
+},
+season: {
+type: "integer",
+format: "int32"
+},
+seasonLabel: {
+type: "string"
+},
+seasonType: {
+$ref: "#/components/schemas/SeasonType"
+},
+tournament: {
+type: "string",
+nullable: true
+},
+startDate: {
+type: "string",
+format: "date-time"
+},
+startTimeTbd: {
+type: "boolean"
+},
+teamId: {
+type: "integer",
+format: "int32"
+},
+team: {
+type: "string"
+},
+conference: {
+type: "string",
+nullable: true
+},
+teamSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+opponentId: {
+type: "integer",
+format: "int32"
+},
+opponent: {
+type: "string"
+},
+opponentConference: {
+type: "string",
+nullable: true
+},
+opponentSeed: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+neutralSite: {
+type: "boolean"
+},
+isHome: {
+type: "boolean"
+},
+conferenceGame: {
+type: "boolean"
+},
+gameType: {
+type: "string",
+nullable: true
+},
+notes: {
+type: "string",
+nullable: true
+},
+gameMinutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+gamePace: {
+type: "number",
+format: "double",
+nullable: true
+},
+players: {
+items: {
+properties: {
+rebounds: {
+properties: {
+total: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensive: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensive: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"total",
+"defensive",
+"offensive"
+],
+type: "object"
+},
+freeThrows: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+threePointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+twoPointFieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+fieldGoals: {
+properties: {
+pct: {
+type: "number",
+format: "double",
+nullable: true
+},
+attempted: {
+type: "number",
+format: "double",
+nullable: true
+},
+made: {
+type: "number",
+format: "double",
+nullable: true
+}
+},
+required: [
+"pct",
+"attempted",
+"made"
+],
+type: "object"
+},
+offensiveReboundPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+freeThrowRate: {
+type: "number",
+format: "double",
+nullable: true
+},
+assistsTurnoverRatio: {
+type: "number",
+format: "double",
+nullable: true
+},
+gameScore: {
+type: "number",
+format: "double",
+nullable: true
+},
+trueShootingPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+effectiveFieldGoalPct: {
+type: "number",
+format: "double",
+nullable: true
+},
+netRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+defensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+offensiveRating: {
+type: "number",
+format: "double",
+nullable: true
+},
+usage: {
+type: "number",
+format: "double",
+nullable: true
+},
+blocks: {
+type: "number",
+format: "double",
+nullable: true
+},
+steals: {
+type: "number",
+format: "double",
+nullable: true
+},
+assists: {
+type: "number",
+format: "double",
+nullable: true
+},
+fouls: {
+type: "number",
+format: "double",
+nullable: true
+},
+turnovers: {
+type: "number",
+format: "double",
+nullable: true
+},
+points: {
+type: "number",
+format: "double",
+nullable: true
+},
+minutes: {
+type: "number",
+format: "double",
+nullable: true
+},
+ejected: {
+type: "boolean",
+nullable: true
+},
+starter: {
+type: "boolean",
+nullable: true
+},
+position: {
+type: "string"
+},
+name: {
+type: "string"
+},
+athleteSourceId: {
+type: "string"
+},
+athleteId: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"rebounds",
+"freeThrows",
+"threePointFieldGoals",
+"twoPointFieldGoals",
+"fieldGoals",
+"offensiveReboundPct",
+"freeThrowRate",
+"assistsTurnoverRatio",
+"gameScore",
+"trueShootingPct",
+"effectiveFieldGoalPct",
+"netRating",
+"defensiveRating",
+"offensiveRating",
+"usage",
+"blocks",
+"steals",
+"assists",
+"fouls",
+"turnovers",
+"points",
+"minutes",
+"ejected",
+"starter",
+"position",
+"name",
+"athleteSourceId",
+"athleteId"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"gameId",
+"season",
+"seasonLabel",
+"seasonType",
+"tournament",
+"startDate",
+"startTimeTbd",
+"teamId",
+"team",
+"conference",
+"teamSeed",
+"opponentId",
+"opponent",
+"opponentConference",
+"opponentSeed",
+"neutralSite",
+"isHome",
+"conferenceGame",
+"gameType",
+"notes",
+"gameMinutes",
+"gamePace",
+"players"
+],
+type: "object",
+additionalProperties: false
+},
+DraftTeam: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "number",
+format: "double"
+},
+location: {
+type: "string"
+},
+name: {
+type: "string"
+},
+displayName: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+}
+},
+required: [
+"id",
+"sourceId",
+"location",
+"name",
+"displayName",
+"abbreviation"
+],
+type: "object",
+additionalProperties: false
+},
+DraftPosition: {
+properties: {
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+}
+},
+required: [
+"name",
+"abbreviation"
+],
+type: "object",
+additionalProperties: false
+},
+DraftPick: {
+properties: {
+athleteId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+sourceTeamId: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+sourceTeamLocation: {
+type: "string",
+nullable: true
+},
+sourceTeamName: {
+type: "string",
+nullable: true
+},
+sourceTeamLeagueAffiliation: {
+type: "string",
+nullable: true
+},
+sourceTeamCollegeId: {
+type: "number",
+format: "double",
+nullable: true
+},
+draftTeamId: {
+type: "number",
+format: "double"
+},
+draftTeam: {
+type: "string"
+},
+year: {
+type: "integer",
+format: "int32"
+},
+overall: {
+type: "integer",
+format: "int32"
+},
+round: {
+type: "integer",
+format: "int32"
+},
+pick: {
+type: "integer",
+format: "int32"
+},
+name: {
+type: "string"
+},
+overallRank: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+positionRank: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+height: {
+type: "number",
+format: "double",
+nullable: true
+},
+weight: {
+type: "integer",
+format: "int32",
+nullable: true
+}
+},
+required: [
+"athleteId",
+"sourceTeamId",
+"sourceTeamLocation",
+"sourceTeamName",
+"sourceTeamLeagueAffiliation",
+"sourceTeamCollegeId",
+"draftTeamId",
+"draftTeam",
+"year",
+"overall",
+"round",
+"pick",
+"name",
+"overallRank",
+"positionRank",
+"height",
+"weight"
+],
+type: "object",
+additionalProperties: false
+},
+ConferenceInfo: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+},
+shortName: {
+type: "string"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"abbreviation",
+"shortName"
+],
+type: "object",
+additionalProperties: false
+},
+ConferenceHistory: {
+properties: {
+id: {
+type: "integer",
+format: "int32"
+},
+sourceId: {
+type: "string"
+},
+name: {
+type: "string"
+},
+abbreviation: {
+type: "string"
+},
+shortName: {
+type: "string"
+},
+teams: {
+items: {
+properties: {
+endSeason: {
+type: "integer",
+format: "int32",
+nullable: true
+},
+startSeason: {
+type: "integer",
+format: "int32"
+},
+mascot: {
+type: "string",
+nullable: true
+},
+school: {
+type: "string"
+},
+sourceId: {
+type: "string"
+},
+id: {
+type: "integer",
+format: "int32"
+}
+},
+required: [
+"endSeason",
+"startSeason",
+"mascot",
+"school",
+"sourceId",
+"id"
+],
+type: "object"
+},
+type: "array"
+}
+},
+required: [
+"id",
+"sourceId",
+"name",
+"abbreviation",
+"shortName",
+"teams"
+],
+type: "object",
+additionalProperties: false
+}
+},
+securitySchemes: {
+apiKey: {
+type: "http",
+scheme: "bearer"
+}
+}
+},
+info: {
+title: "College Basketball Data API",
+version: "1.22.4",
+description: "This is an API for query various college basketball datasets and analytics. API keys can be acquired by registering on the CollegeBasketballData.com website.",
+license: {
+name: "MIT"
+},
+contact: {
+email: "admin@collegefootballdata.com",
+name: "the developer"
+}
+},
+paths: {
+/venues: {
+get: {
+operationId: "GetVenues",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/VenueInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of available venues",
+tags: [
+"venues"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/teams: {
+get: {
+operationId: "GetTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical team information",
+tags: [
+"teams"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/teams/roster: {
+get: {
+operationId: "GetTeamRoster",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamRoster"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves team roster information",
+tags: [
+"teams"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/substitutions/game/{gameId}: {
+get: {
+operationId: "GetSubstitutionsByGame",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns all player substitutions for a given game",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/substitutions/player/{playerId}: {
+get: {
+operationId: "GetSubstitutionsByPlayerId",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all player substitutions for a given player and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required player id filter",
+in: "path",
+name: "playerId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/substitutions/team: {
+get: {
+operationId: "GetSubstitutionsByTeam",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSubsititution"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all player substitutions for a given team and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/stats/team/season: {
+get: {
+operationId: "GetTeamSeasonStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/TeamSeasonStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns team season statistics by year or team",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter, required if team is not provided",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional team name filter, required if season is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/team/shooting/season: {
+get: {
+operationId: "GetTeamSeasonShootingStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/SeasonShootingStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves team season shooting statistics",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Team filter, required if conference is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Conference abbreviation filter, required if team is not provided",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/player/season: {
+get: {
+operationId: "GetPlayerSeasonStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSeasonStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns player statistics by season",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/stats/player/shooting/season: {
+get: {
+operationId: "GetPlayerSeasonShootingStats",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayerSeasonShootingStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves player season shooting statistics",
+tags: [
+"stats"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Team filter, required if conference is not provided",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Conference abbreviation filter, required if team is not provided",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/recruiting/players: {
+get: {
+operationId: "GetRecruits",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/Recruit"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical composite player recruiting ranking and ratings",
+tags: [
+"recruiting"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional year filter",
+in: "query",
+name: "year",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional college team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional college conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional position filter",
+in: "query",
+name: "position",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/ratings/srs: {
+get: {
+operationId: "GetSrs",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/SrsInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves SRS ratings for the provided season, team, or conference.",
+tags: [
+"ratings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/ratings/adjusted: {
+get: {
+operationId: "GetAdjustedEfficiency",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/AdjustedEfficiencyInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves adjusted efficiency ratings for the provided season, team, or conference.",
+tags: [
+"ratings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/rankings: {
+get: {
+operationId: "GetRankings",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PollTeamInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical poll data",
+tags: [
+"rankings"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional week filter",
+in: "query",
+name: "week",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional poll type filter ("ap" or "coaches")",
+in: "query",
+name: "pollType",
+required: false,
+schema: {
+type: "string",
+enum: [
+"ap",
+"coaches"
+]
+}
+},
+{
+description: "Optional team filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/plays/game/{gameId}: {
+get: {
+operationId: "GetPlays",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns all plays for a given game",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/player/{playerId}: {
+get: {
+operationId: "GetPlaysByPlayerId",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given player and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required player id filter",
+in: "path",
+name: "playerId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/team: {
+get: {
+operationId: "GetPlaysByTeam",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given team and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/date: {
+get: {
+operationId: "GetPlaysByDate",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given UTC date",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required date filter in ISO 8601 format (YYYY-MM-DD)",
+in: "query",
+name: "date",
+required: true,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+},
+{
+description: "Optional UTC offset in hours to adjust the date range",
+in: "query",
+name: "utcOffset",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+}
+]
+}
+},
+/plays/tournament: {
+get: {
+operationId: "GetPlaysByTournament",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve all plays for a given tournament and season",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional filter to only return shooting plays",
+in: "query",
+name: "shootingPlaysOnly",
+required: false,
+schema: {
+type: "boolean"
+}
+}
+]
+}
+},
+/plays/types: {
+get: {
+operationId: "GetPlayTypes",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/PlayTypeInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieve list of play types",
+tags: [
+"plays"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/lineups/team: {
+get: {
+operationId: "GetLineupsByTeamSeason",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineupStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Queries lineup statistics for a given team and season",
+tags: [
+"lineups"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required season filter",
+in: "query",
+name: "season",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Required team filter",
+in: "query",
+name: "team",
+required: true,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start date range filter",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end date range filter",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/lineups/game/{gameId}: {
+get: {
+operationId: "GetLineupStatsByGame",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineupStats"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Queries lineup statistics for a specific game",
+tags: [
+"lineups"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Required game id filter",
+in: "path",
+name: "gameId",
+required: true,
+schema: {
+format: "int32",
+type: "integer"
+}
+}
+]
+}
+},
+/lines: {
+get: {
+operationId: "GetLines",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameLines"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns betting lines for the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"lines"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+}
+]
+}
+},
+/lines/providers: {
+get: {
+operationId: "GetProviders",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/LineProviderInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns a list of available line providers",
+tags: [
+"lines"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/games: {
+get: {
+operationId: "GetGames",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns information on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional game status filter",
+in: "query",
+name: "status",
+required: false,
+schema: {
+$ref: "#/components/schemas/GameStatus"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/media: {
+get: {
+operationId: "GetBroadcasts",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameMediaInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns broadcast information on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/teams: {
+get: {
+operationId: "GetGameTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameBoxScoreTeam"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns team box score statistics and metrics on the first 3000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/games/players: {
+get: {
+operationId: "GetGamePlayers",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/GameBoxScorePlayers"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Returns player box score statistics and metrics on the first 1000 games that match the provided filters, ordered by start date.",
+tags: [
+"games"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional start timestamp in ISO 8601 format",
+in: "query",
+name: "startDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional end timestamp in ISO 8601 format",
+in: "query",
+name: "endDateRange",
+required: false,
+schema: {
+format: "date-time",
+type: "string"
+}
+},
+{
+description: "Optional team name filter",
+in: "query",
+name: "team",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional season filter",
+in: "query",
+name: "season",
+required: false,
+schema: {
+format: "double",
+type: "number"
+}
+},
+{
+description: "Optional season type filter",
+in: "query",
+name: "seasonType",
+required: false,
+schema: {
+$ref: "#/components/schemas/SeasonType"
+}
+},
+{
+description: "Optional tournament filter (e.g. NCAA, NIT, etc)",
+in: "query",
+name: "tournament",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/draft/teams: {
+get: {
+operationId: "GetDraftTeams",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftTeam"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of NBA teams",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/draft/positions: {
+get: {
+operationId: "GetDraftPositions",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftPosition"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of position names for NBA draft prospects",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/draft/picks: {
+get: {
+operationId: "GetDraftPicks",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/DraftPick"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical NBA draft picks",
+tags: [
+"draft"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional draft year filter",
+in: "query",
+name: "year",
+required: false,
+schema: {
+format: "int32",
+type: "integer"
+}
+},
+{
+description: "Optional NBA team filter",
+in: "query",
+name: "draftTeam",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional source team (e.g. NCAA) filter",
+in: "query",
+name: "sourceTeam",
+required: false,
+schema: {
+type: "string"
+}
+},
+{
+description: "Optional player position abbreviation filter",
+in: "query",
+name: "position",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+},
+/conferences: {
+get: {
+operationId: "GetConferences",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/ConferenceInfo"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves list of available conferences",
+tags: [
+"conferences"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [ ]
+}
+},
+/conferences/history: {
+get: {
+operationId: "GetConferenceHistory",
+responses: {
+200: {
+description: "Ok",
+content: {
+application/json: {
+schema: {
+items: {
+$ref: "#/components/schemas/ConferenceHistory"
+},
+type: "array"
+}
+}
+}
+}
+},
+description: "Retrieves historical conference membership information",
+tags: [
+"conferences"
+],
+security: [
+{
+apiKey: [ ]
+}
+],
+parameters: [
+{
+description: "Optional conference abbreviation filter",
+in: "query",
+name: "conference",
+required: false,
+schema: {
+type: "string"
+}
+}
+]
+}
+}
+},
+servers: [
+{
+url: "https://api.collegebasketballdata.com/"
+}
+],
+tags: [
+{
+name: "games",
+description: "Games scores and statistics"
+},
+{
+name: "plays",
+description: "Play by play data"
+},
+{
+name: "teams",
+description: "Team information"
+},
+{
+name: "conferences",
+description: "Conference information"
+},
+{
+name: "venues",
+description: "Information about venues"
+},
+{
+name: "stats",
+description: "Statistical data"
+},
+{
+name: "rankings",
+description: "Historical polls and rankings"
+},
+{
+name: "ratings",
+description: "Historical ratings systems"
+},
+{
+name: "lines",
+description: "Historical spreads and betting data"
+},
+{
+name: "lineups",
+description: "Statistics and data around specific lineups"
+},
+{
+name: "draft",
+description: "Historical NBA draft data"
+},
+{
+name: "recruiting",
+description: "Historical recruiting data"
+}
+]
+},
+host: "api.collegebasketballdata.com"
+}

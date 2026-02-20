@@ -1,0 +1,30 @@
+turnover:
+  - "Offensive Charge"
+  - "Lost Ball Turnover"
+  - "Foul Turnover"
+def_rebound:
+  - "Defensive Rebound"
+  - "Dead Ball Rebound"
+off_rebound:
+  - "Offensive Rebound"
+made_fg: []
+missed_fg: []
+made_ft: []
+missed_ft: []
+ft_last:
+  - "Free Throw 1 of 1"
+period_end:
+  - "End Game"
+  - "End Period"
+shot:
+  - "Shot"
+  - "JumpShot"
+  - "RegularJumpShot"
+  - "LayUpShot"
+  - "LayupShot"
+  - "DunkShot"
+  - "TipShot"
+  - "Three Pointer"
+  - "Three Point Jump Shot"
+free_throw:
+  - "Free Throw"
