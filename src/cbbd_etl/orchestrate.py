@@ -1111,6 +1111,20 @@ def _apply_key_aliases(table: str, records: List[Dict[str, Any]]) -> List[Dict[s
             rec.pop("offenseRating", None)
             rec.pop("opponentStats", None)
             rec.pop("teamStats", None)
+    if table == "fct_player_season_stats":
+        for rec in records:
+            if rec.get("playerId") is None and rec.get("athleteId") is not None:
+                rec["playerId"] = rec["athleteId"]
+    if table == "fct_player_season_shooting":
+        for rec in records:
+            if rec.get("playerId") is None and rec.get("athleteId") is not None:
+                rec["playerId"] = rec["athleteId"]
+    if table == "fct_recruiting_players":
+        for rec in records:
+            if rec.get("playerId") is None:
+                rec["playerId"] = rec.get("id") or rec.get("athleteId")
+            if rec.get("season") is None and rec.get("year") is not None:
+                rec["season"] = rec["year"]
     if table == "fct_ratings_adjusted":
         for rec in records:
             if rec.get("teamid") is None and rec.get("teamId") is not None:
