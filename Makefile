@@ -1,4 +1,4 @@
-.PHONY: backfill incremental validate one gap-fill gap-fill-s3 validate-partitions test
+.PHONY: backfill incremental validate one gap-fill gap-fill-s3 validate-partitions test gold gold-table gold-dry-run
 
 backfill:
 	poetry run python -m cbbd_etl backfill
@@ -23,3 +23,12 @@ validate-partitions:
 
 test:
 	poetry run pytest src/cbbd_etl/tests/ -v
+
+gold:
+	poetry run python -m cbbd_etl.gold.runner --season $(SEASON)
+
+gold-table:
+	poetry run python -m cbbd_etl.gold.runner --season $(SEASON) --table $(TABLE)
+
+gold-dry-run:
+	poetry run python -m cbbd_etl.gold.runner --season $(SEASON) --dry-run
