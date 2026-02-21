@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  etl:
+    build: .
+    environment:
+      - CBBD_API_KEY=${CBBD_API_KEY}
+      - CBBD_CHECKPOINT_TABLE=${CBBD_CHECKPOINT_TABLE:-cbbd_checkpoints}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+    # Default: incremental pipeline. Override with:
+    #   docker compose run etl backfill
+    #   docker compose run etl validate
+    #   docker compose run etl one --endpoint games --params '{"season": 2024}'
+    command: ["incremental"]

@@ -183,5 +183,23 @@ s3_layout:
 validate:
   strict_schema: false
 
+# Gold layer settings
+gold:
+  glue_database: "cbbd_gold"
+  tables:
+    - team_power_rankings
+    - game_predictions_features
+    - player_season_impact
+    - market_lines_analysis
+    - team_season_summary
+
+# Gap-fill settings
+gap_fill:
+  athena_database: "cbbd_silver"
+  athena_workgroup: "cbbd"
+  athena_output: "s3://hoops-edge/athena/"
+  max_concurrency: 5
+  resume_dir: ".gap_fill_resume"
+
 # Optional: skip problematic endpoints by name
 skip_endpoints: []
