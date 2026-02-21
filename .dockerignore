@@ -1,0 +1,50 @@
+# Version control
+.git/
+.gitignore
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Tests and reports
+tests/
+reports/
+docs/
+htmlcov/
+.coverage
+
+# Infrastructure
+infra/
+.terraform/
+*.tfstate*
+*.tfvars
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# CI/CD
+.github/
+
+# Claude agent files
+.claude/
+
+# Miscellaneous
+*.md
+LICENSE
+Makefile
+scripts/

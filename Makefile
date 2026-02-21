@@ -1,4 +1,4 @@
-.PHONY: backfill incremental validate one gap-fill gap-fill-s3 validate-partitions test test-unit test-integration test-quality gold gold-table gold-dry-run
+.PHONY: backfill incremental validate one gap-fill gap-fill-s3 validate-partitions test test-unit test-integration test-quality gold gold-table gold-dry-run docker-build docker-push deploy tf-plan tf-apply tf-fmt
 
 backfill:
 	poetry run python -m cbbd_etl backfill
@@ -41,3 +41,32 @@ gold-table:
 
 gold-dry-run:
 	poetry run python -m cbbd_etl.gold.runner --season $(SEASON) --dry-run
+
+# ---------------------------------------------------------------------------
+# Infrastructure targets
+# ---------------------------------------------------------------------------
+
+ECR_URL := $(shell cd infra/terraform && terraform output -raw ecr_repository_url 2>/dev/null)
+
+docker-build:
+	docker build -t cbbd-etl:latest .
+
+docker-push: docker-build
+	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $(ECR_URL)
+	docker tag cbbd-etl:latest $(ECR_URL):latest
+	docker tag cbbd-etl:latest $(ECR_URL):$(shell git rev-parse --short HEAD)
+	docker push $(ECR_URL):latest
+	docker push $(ECR_URL):$(shell git rev-parse --short HEAD)
+
+deploy: docker-push
+	@echo "Image pushed. ECS will pick up :latest on next scheduled run."
+	@echo "To force immediate run: aws ecs run-task --cluster cbbd-etl --task-definition cbbd-etl-incremental --launch-type FARGATE --network-configuration 'awsvpcConfiguration={subnets=[$(shell cd infra/terraform && terraform output -json | jq -r '.ecs_cluster_arn.value' 2>/dev/null || echo "SUBNET_ID")],assignPublicIp=ENABLED}'"
+
+tf-plan:
+	cd infra/terraform && terraform plan
+
+tf-apply:
+	cd infra/terraform && terraform apply
+
+tf-fmt:
+	cd infra/terraform && terraform fmt

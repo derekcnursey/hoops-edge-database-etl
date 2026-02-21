@@ -186,6 +186,7 @@ resource "aws_iam_policy" "etl_policy" {
     Version = "2012-10-17"
     Statement = [
       {
+        Sid    = "S3Access"
         Effect = "Allow"
         Action = [
           "s3:ListBucket",
@@ -199,6 +200,7 @@ resource "aws_iam_policy" "etl_policy" {
         ]
       },
       {
+        Sid    = "DynamoDBCheckpoints"
         Effect = "Allow"
         Action = [
           "dynamodb:GetItem",
@@ -209,24 +211,44 @@ resource "aws_iam_policy" "etl_policy" {
         Resource = aws_dynamodb_table.checkpoints.arn
       },
       {
+        Sid    = "GlueCatalog"
         Effect = "Allow"
         Action = [
           "glue:GetDatabase",
           "glue:CreateDatabase",
           "glue:GetTable",
           "glue:CreateTable",
-          "glue:UpdateTable"
+          "glue:UpdateTable",
+          "glue:GetPartitions",
+          "glue:BatchCreatePartition"
         ]
-        Resource = "*"
+        Resource = [
+          "arn:aws:glue:${var.region}:${data.aws_caller_identity.current.account_id}:catalog",
+          aws_glue_catalog_database.bronze.arn,
+          aws_glue_catalog_database.silver.arn,
+          "arn:aws:glue:${var.region}:${data.aws_caller_identity.current.account_id}:table/${aws_glue_catalog_database.bronze.name}/*",
+          "arn:aws:glue:${var.region}:${data.aws_caller_identity.current.account_id}:table/${aws_glue_catalog_database.silver.name}/*"
+        ]
       },
       {
+        Sid    = "AthenaWorkgroup"
         Effect = "Allow"
         Action = [
           "athena:StartQueryExecution",
           "athena:GetQueryExecution",
+          "athena:GetQueryResults",
           "athena:GetWorkGroup"
         ]
-        Resource = "*"
+        Resource = aws_athena_workgroup.cbbd.arn
+      },
+      {
+        Sid    = "SSMGetApiKey"
+        Effect = "Allow"
+        Action = [
+          "ssm:GetParameter",
+          "ssm:GetParameters"
+        ]
+        Resource = "arn:aws:ssm:${var.region}:${data.aws_caller_identity.current.account_id}:parameter/cbbd/api_key"
       }
     ]
   })
