@@ -1007,3 +1007,173 @@ class TestIOHelpers:
         table = pa.table({"a": [1, 2, 3]})
         result = pydict_get(table, "a")
         assert result == [1, 2, 3]
+
+    def test_pydict_get_first_finds_second_candidate(self):
+        """pydict_get_first returns data from the first matching column."""
+        from cbbd_etl.gold._io_helpers import pydict_get_first
+
+        table = pa.table({"offensiveRating": [115.0, 110.0]})
+        result = pydict_get_first(table, ["offenserating", "offensiveRating"])
+        assert result == [115.0, 110.0]
+
+    def test_pydict_get_first_all_missing(self):
+        """pydict_get_first returns Nones when no candidates match."""
+        from cbbd_etl.gold._io_helpers import pydict_get_first
+
+        table = pa.table({"x": [1, 2]})
+        result = pydict_get_first(table, ["a", "b", "c"])
+        assert result == [None, None]
+
+    def test_filter_by_season(self):
+        """filter_by_season filters rows by season column value."""
+        from cbbd_etl.gold._io_helpers import filter_by_season
+
+        table = pa.table({
+            "teamId": pa.array([1, 2, 3, 4], type=pa.int64()),
+            "season": pa.array([2024, 2025, 2024, 2025], type=pa.int32()),
+            "rating": pa.array([10.0, 20.0, 30.0, 40.0], type=pa.float64()),
+        })
+        result = filter_by_season(table, 2024)
+        assert result.num_rows == 2
+        assert result.column("teamId").to_pylist() == [1, 3]
+
+    def test_dedup_by(self):
+        """dedup_by removes duplicate rows by key columns."""
+        from cbbd_etl.gold._io_helpers import dedup_by
+
+        table = pa.table({
+            "gameId": pa.array([100, 100, 101], type=pa.int64()),
+            "homeTeamId": pa.array([1, 1, 2], type=pa.int64()),
+            "homeScore": pa.array([85, 85, 70], type=pa.int64()),
+        })
+        result = dedup_by(table, ["gameId"])
+        assert result.num_rows == 2
+        assert result.column("gameId").to_pylist() == [100, 101]
+
+
+# ---------------------------------------------------------------------------
+# Tests: real-data column name patterns
+# ---------------------------------------------------------------------------
+
+class TestRealDataColumnNames:
+    """Tests verifying gold transforms work with real S3 column names."""
+
+    def test_ratings_adjusted_real_columns(self):
+        """team_power_rankings works with offensiveRating/defensiveRating."""
+        from cbbd_etl.gold.team_power_rankings import build
+
+        # Use real-world column names: offensiveRating, defensiveRating
+        real_adj = pa.table({
+            "teamid": pa.array([1, 2], type=pa.int64()),
+            "season": pa.array([2024, 2024], type=pa.int32()),
+            "team": pa.array(["Duke", "UNC"], type=pa.string()),
+            "conference": pa.array(["ACC", "ACC"], type=pa.string()),
+            "offensiveRating": pa.array([115.0, 110.0], type=pa.float64()),
+            "defensiveRating": pa.array([95.0, 98.0], type=pa.float64()),
+            "netrating": pa.array([20.0, 12.0], type=pa.float64()),
+            "ranking_offense": pa.array([5, 20], type=pa.int64()),
+            "ranking_defense": pa.array([3, 15], type=pa.int64()),
+            "ranking_net": pa.array([1, 10], type=pa.int64()),
+        })
+        table_data = {
+            "fct_ratings_adjusted": real_adj,
+            "fct_ratings_srs": pa.table({}),
+            "fct_rankings": pa.table({}),
+            "fct_pbp_team_daily_rollup": pa.table({}),
+            "fct_pbp_team_daily_rollup_adj": pa.table({}),
+            "dim_teams": _make_dim_teams(),
+        }
+        patches = _patch_s3io(table_data)
+        for p in patches:
+            p.start()
+        try:
+            result = build(_make_config(), 2024)
+            assert result.num_rows == 2
+            offs = result.column("adj_off_rating").to_pylist()
+            defs = result.column("adj_def_rating").to_pylist()
+            assert 115.0 in offs
+            assert 95.0 in defs
+        finally:
+            for p in patches:
+                p.stop()
+
+    def test_games_homepoints_columns(self):
+        """game_predictions_features works with homePoints/awayPoints."""
+        from cbbd_etl.gold.game_predictions_features import build
+
+        real_games = pa.table({
+            "gameId": pa.array([100], type=pa.int64()),
+            "season": pa.array([2024], type=pa.int32()),
+            "startDate": pa.array(["2024-01-10"], type=pa.string()),
+            "homeTeamId": pa.array([1], type=pa.int64()),
+            "awayTeamId": pa.array([2], type=pa.int64()),
+            "homePoints": pa.array([85], type=pa.int64()),
+            "awayPoints": pa.array([78], type=pa.int64()),
+        })
+        table_data = {
+            "fct_games": real_games,
+            "fct_ratings_adjusted": pa.table({}),
+            "fct_ratings_srs": pa.table({}),
+            "fct_lines": pa.table({}),
+            "fct_pbp_team_daily_rollup": pa.table({}),
+            "dim_teams": _make_dim_teams(),
+        }
+        patches = _patch_s3io(table_data)
+        for p in patches:
+            p.start()
+        try:
+            result = build(_make_config(), 2024)
+            assert result.num_rows == 2
+            scores = result.column("team_score").to_pylist()
+            assert 85 in scores
+            assert 78 in scores
+        finally:
+            for p in patches:
+                p.stop()
+
+    def test_player_stats_string_dict_fields(self):
+        """player_season_impact parses string dict fields from real data."""
+        from cbbd_etl.gold.player_season_impact import build
+
+        real_stats = pa.table({
+            "athleteId": pa.array([747], type=pa.int64()),
+            "season": pa.array([2024], type=pa.int32()),
+            "team": pa.array(["Abilene Christian"], type=pa.string()),
+            "conference": pa.array(["WAC"], type=pa.string()),
+            "games": pa.array([31], type=pa.int64()),
+            "minutes": pa.array([985], type=pa.int64()),
+            "points": pa.array([482], type=pa.int64()),
+            "rebounds": pa.array(["{'offensive': 31, 'defensive': 110, 'total': 141}"], type=pa.string()),
+            "assists": pa.array([36], type=pa.int64()),
+            "steals": pa.array([43], type=pa.int64()),
+            "blocks": pa.array([7], type=pa.int64()),
+            "turnovers": pa.array([72], type=pa.int64()),
+            "fieldGoals": pa.array(["{'made': 175, 'attempted': 367, 'pct': 47.7}"], type=pa.string()),
+            "freeThrows": pa.array(["{'made': 115, 'attempted': 158, 'pct': 72.8}"], type=pa.string()),
+            "threePointFieldGoals": pa.array(["{'made': 17, 'attempted': 49, 'pct': 34.7}"], type=pa.string()),
+        })
+        table_data = {
+            "fct_player_season_stats": real_stats,
+            "fct_recruiting_players": pa.table({}),
+            "dim_teams": pa.table({}),
+        }
+        patches = _patch_s3io(table_data)
+        for p in patches:
+            p.start()
+        try:
+            result = build(_make_config(), 2024)
+            assert result.num_rows == 1
+            # Check parsed shooting stats
+            fgm = result.column("fgm").to_pylist()[0]
+            fga = result.column("fga").to_pylist()[0]
+            assert fgm == 175.0
+            assert fga == 367.0
+            # Check rebounds parsed from string dict
+            reb = result.column("rebounds").to_pylist()[0]
+            assert reb == 141.0
+            # Check ppg
+            ppg = result.column("ppg").to_pylist()[0]
+            assert abs(ppg - 482 / 31) < 0.1
+        finally:
+            for p in patches:
+                p.stop()

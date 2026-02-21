@@ -13,7 +13,7 @@ import pyarrow as pa
 from ..config import Config
 from ..normalize import normalize_records
 from ..s3_io import S3IO
-from ._io_helpers import pydict_get, read_silver_table, safe_divide
+from ._io_helpers import dedup_by, filter_by_season, pydict_get, pydict_get_first, read_silver_table, safe_divide
 
 
 def build(cfg: Config, season: int) -> pa.Table:
@@ -38,8 +38,8 @@ def build(cfg: Config, season: int) -> pa.Table:
     adj_team_ids = pydict_get(adj, "teamid")
     adj_teams = pydict_get(adj, "team")
     adj_conferences = pydict_get(adj, "conference")
-    adj_off = pydict_get(adj, "offenserating")
-    adj_def = pydict_get(adj, "defenserating")
+    adj_off = pydict_get_first(adj, ["offenserating", "offensiveRating"])
+    adj_def = pydict_get_first(adj, ["defenserating", "defensiveRating"])
     adj_net = pydict_get(adj, "netrating")
     adj_rank_off = pydict_get(adj, "ranking_offense")
     adj_rank_def = pydict_get(adj, "ranking_defense")
@@ -87,7 +87,7 @@ def build(cfg: Config, season: int) -> pa.Table:
     # 2. SRS ratings
     # ------------------------------------------------------------------
     out_srs: List[Optional[float]] = [None] * n
-    srs = read_silver_table(s3, cfg, "fct_ratings_srs", season=season)
+    srs = filter_by_season(read_silver_table(s3, cfg, "fct_ratings_srs"), season)
     if srs.num_rows > 0:
         srs_tids = pydict_get(srs, "teamId")
         srs_ratings = pydict_get(srs, "rating")

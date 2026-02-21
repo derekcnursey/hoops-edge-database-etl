@@ -13,7 +13,7 @@ import pyarrow as pa
 from ..config import Config
 from ..normalize import normalize_records
 from ..s3_io import S3IO
-from ._io_helpers import pydict_get, read_silver_table
+from ._io_helpers import dedup_by, pydict_get, pydict_get_first, read_silver_table
 
 
 def build(cfg: Config, season: int) -> pa.Table:
@@ -32,7 +32,10 @@ def build(cfg: Config, season: int) -> pa.Table:
     # ------------------------------------------------------------------
     # 1. Read fct_lines
     # ------------------------------------------------------------------
-    lines = read_silver_table(s3, cfg, "fct_lines", season=season)
+    lines = dedup_by(
+        read_silver_table(s3, cfg, "fct_lines", season=season),
+        ["gameId", "provider"],
+    )
     if lines.num_rows == 0:
         return _empty_table()
 
@@ -46,14 +49,14 @@ def build(cfg: Config, season: int) -> pa.Table:
     # ------------------------------------------------------------------
     # 2. Read fct_games for outcomes
     # ------------------------------------------------------------------
-    games = read_silver_table(s3, cfg, "fct_games", season=season)
+    games = dedup_by(read_silver_table(s3, cfg, "fct_games", season=season), ["gameId"])
     game_lookup: Dict[int, Dict[str, Any]] = {}
     if games.num_rows > 0:
         g_ids = pydict_get(games, "gameId")
         g_home = pydict_get(games, "homeTeamId")
         g_away = pydict_get(games, "awayTeamId")
-        g_hs = pydict_get(games, "homeScore")
-        g_as = pydict_get(games, "awayScore")
+        g_hs = pydict_get_first(games, ["homeScore", "homePoints"])
+        g_as = pydict_get_first(games, ["awayScore", "awayPoints"])
 
         g_dates: List[Optional[str]] = [None] * games.num_rows
         for col_name in ("startDate", "startTime", "date"):

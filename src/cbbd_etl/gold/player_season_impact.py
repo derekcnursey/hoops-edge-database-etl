@@ -13,7 +13,7 @@ import pyarrow as pa
 from ..config import Config
 from ..normalize import normalize_records
 from ..s3_io import S3IO
-from ._io_helpers import pydict_get, read_silver_table
+from ._io_helpers import filter_by_season, pydict_get, pydict_get_first, read_silver_table
 
 
 def build(cfg: Config, season: int) -> pa.Table:
@@ -36,7 +36,7 @@ def build(cfg: Config, season: int) -> pa.Table:
     if stats.num_rows == 0:
         return _empty_table()
 
-    pids = pydict_get(stats, "playerId")
+    pids = pydict_get_first(stats, ["playerId", "athleteId", "id"])
     # Try multiple column name conventions
     games_col = _first_available(stats, ["games", "gamesPlayed", "gp", "g"])
     mins_col = _first_available(stats, ["minutes", "minutesPlayed", "min", "mpg"])
@@ -46,14 +46,32 @@ def build(cfg: Config, season: int) -> pa.Table:
     stl_col = _first_available(stats, ["steals", "stl"])
     blk_col = _first_available(stats, ["blocks", "blk"])
     tov_col = _first_available(stats, ["turnovers", "to", "tov"])
-    fgm_col = _first_available(stats, ["fieldGoalsMade", "fgm", "fg"])
-    fga_col = _first_available(stats, ["fieldGoalsAttempted", "fga"])
-    fg3m_col = _first_available(stats, ["threePointFieldGoalsMade", "fg3m", "threeFGM", "threesMade"])
-    fg3a_col = _first_available(stats, ["threePointFieldGoalsAttempted", "fg3a", "threeFGA", "threesAttempted"])
-    ftm_col = _first_available(stats, ["freeThrowsMade", "ftm", "ft"])
-    fta_col = _first_available(stats, ["freeThrowsAttempted", "fta"])
     team_col = _first_available(stats, ["team", "school", "teamName"])
     conf_col = _first_available(stats, ["conference", "conf"])
+
+    # Shooting fields may be stored as string dicts like "{'made': 175, 'attempted': 367, 'pct': 47.7}"
+    # Parse them into separate made/attempted columns
+    fg_raw = _first_available(stats, ["fieldGoals"])
+    fgm_col = _first_available(stats, ["fieldGoalsMade", "fgm", "fg"])
+    fga_col = _first_available(stats, ["fieldGoalsAttempted", "fga"])
+    if fgm_col is None and fg_raw is not None:
+        fgm_col, fga_col = _parse_made_attempted(fg_raw)
+
+    fg3_raw = _first_available(stats, ["threePointFieldGoals"])
+    fg3m_col = _first_available(stats, ["threePointFieldGoalsMade", "fg3m", "threeFGM", "threesMade"])
+    fg3a_col = _first_available(stats, ["threePointFieldGoalsAttempted", "fg3a", "threeFGA", "threesAttempted"])
+    if fg3m_col is None and fg3_raw is not None:
+        fg3m_col, fg3a_col = _parse_made_attempted(fg3_raw)
+
+    ft_raw = _first_available(stats, ["freeThrows"])
+    ftm_col = _first_available(stats, ["freeThrowsMade", "ftm", "ft"])
+    fta_col = _first_available(stats, ["freeThrowsAttempted", "fta"])
+    if ftm_col is None and ft_raw is not None:
+        ftm_col, fta_col = _parse_made_attempted(ft_raw)
+
+    # Rebounds may also be a string dict like "{'offensive': 31, 'defensive': 110, 'total': 141}"
+    if reb_col is not None and reb_col and isinstance(reb_col[0], str):
+        reb_col = _parse_stat_total(reb_col)
 
     # ------------------------------------------------------------------
     # 2. Recruiting data
@@ -188,6 +206,46 @@ def _first_available(table: pa.Table, candidates: List[str]) -> Optional[List]:
     return None
 
 
+def _parse_stat_dict(val: Any) -> Optional[dict]:
+    """Parse a string dict like "{'made': 175, 'attempted': 367, 'pct': 47.7}"."""
+    if val is None:
+        return None
+    if isinstance(val, dict):
+        return val
+    try:
+        import ast
+        return ast.literal_eval(str(val))
+    except (ValueError, SyntaxError):
+        return None
+
+
+def _parse_made_attempted(raw_col: List) -> tuple:
+    """Parse a list of string dicts into (made_list, attempted_list)."""
+    made = []
+    attempted = []
+    for val in raw_col:
+        d = _parse_stat_dict(val)
+        if d is not None:
+            made.append(d.get("made"))
+            attempted.append(d.get("attempted"))
+        else:
+            made.append(None)
+            attempted.append(None)
+    return made, attempted
+
+
+def _parse_stat_total(raw_col: List) -> List:
+    """Parse a list of string dicts and extract 'total' key."""
+    result = []
+    for val in raw_col:
+        d = _parse_stat_dict(val)
+        if d is not None:
+            result.append(d.get("total"))
+        else:
+            result.append(None)
+    return result
+
+
 def _to_float(val: Any) -> Optional[float]:
     """Convert a value to float, returning None on failure."""
     if val is None:
@@ -217,7 +275,7 @@ def _build_recruit_lookup(
     lookup: Dict[int, Dict[str, Any]] = {}
     if rec.num_rows == 0:
         return lookup
-    pids = pydict_get(rec, "playerId")
+    pids = pydict_get_first(rec, ["playerId", "athleteId", "id"])
     ranks = pydict_get(rec, "ranking") if "ranking" in rec.column_names else pydict_get(rec, "rank")
     stars = pydict_get(rec, "stars")
     ratings = pydict_get(rec, "rating")

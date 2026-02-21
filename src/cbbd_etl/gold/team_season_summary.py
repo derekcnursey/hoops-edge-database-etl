@@ -14,7 +14,7 @@ import pyarrow as pa
 from ..config import Config
 from ..normalize import normalize_records
 from ..s3_io import S3IO
-from ._io_helpers import pydict_get, read_silver_table
+from ._io_helpers import dedup_by, filter_by_season, pydict_get, pydict_get_first, read_silver_table
 
 
 def build(cfg: Config, season: int) -> pa.Table:
@@ -47,7 +47,7 @@ def build(cfg: Config, season: int) -> pa.Table:
     # ------------------------------------------------------------------
     # 2. Compute W/L record from fct_games
     # ------------------------------------------------------------------
-    games = read_silver_table(s3, cfg, "fct_games", season=season)
+    games = dedup_by(read_silver_table(s3, cfg, "fct_games", season=season), ["gameId"])
     record = _compute_records(games, team_lookup)
 
     # If no games found, use ratings as spine
@@ -80,8 +80,8 @@ def build(cfg: Config, season: int) -> pa.Table:
     adj = read_silver_table(s3, cfg, "fct_ratings_adjusted", season=season)
     if adj.num_rows > 0:
         a_tids = pydict_get(adj, "teamid")
-        a_off = pydict_get(adj, "offenserating")
-        a_def = pydict_get(adj, "defenserating")
+        a_off = pydict_get_first(adj, ["offenserating", "offensiveRating"])
+        a_def = pydict_get_first(adj, ["defenserating", "defensiveRating"])
         a_net = pydict_get(adj, "netrating")
         for i, tid in enumerate(a_tids):
             if tid is None:
@@ -96,7 +96,7 @@ def build(cfg: Config, season: int) -> pa.Table:
     # 4. SRS
     # ------------------------------------------------------------------
     out_srs: List[Optional[float]] = [None] * n
-    srs = read_silver_table(s3, cfg, "fct_ratings_srs", season=season)
+    srs = filter_by_season(read_silver_table(s3, cfg, "fct_ratings_srs"), season)
     if srs.num_rows > 0:
         s_tids = pydict_get(srs, "teamId")
         s_ratings = pydict_get(srs, "rating")
@@ -240,8 +240,8 @@ def _compute_records(
 
     g_home = pydict_get(games, "homeTeamId")
     g_away = pydict_get(games, "awayTeamId")
-    g_hs = pydict_get(games, "homeScore")
-    g_as = pydict_get(games, "awayScore")
+    g_hs = pydict_get_first(games, ["homeScore", "homePoints"])
+    g_as = pydict_get_first(games, ["awayScore", "awayPoints"])
 
     for i in range(len(g_home)):
         h = g_home[i]
