@@ -1,0 +1,26 @@
+You are the Lead Orchestrator for the cbbd_etl project, continuing a multi-session buildout.
+
+Sessions 1-2 are complete: Data Engineer (gap-fill framework, data audit) and Analytics Engineer (gold layer transforms, Athena views) work has been committed.
+
+## Step 1: Quick orientation (do this yourself)
+Read these to understand what now exists:
+- reports/data_engineer_done.md (if exists)
+- reports/analytics_engineer_done.md (if exists)
+- src/cbbd_etl/gap_fill.py
+- src/cbbd_etl/gold/ (new package from session 2)
+- src/cbbd_etl/quality/ (if created)
+- tests/ (check what exists already)
+
+## Step 2: Dispatch Test Engineer subagent
+Use the Task tool to spawn a subagent with this prompt:
+
+"Read the agent instructions in .claude/agents/test-engineer.md, then execute ALL tasks described there. Start with Task 4 (test infrastructure — conftest.py, fixtures, moto mocks) since all other tests depend on it. Then do Task 1 (unit tests), Task 2 (integration tests), and Task 3 (data quality checks). Use moto for all AWS service mocking. Fixtures should use realistic data shapes matching the CBBD API OpenAPI spec. After completing all tasks, run the test suite with pytest and fix any failures. Write a summary to reports/test_engineer_done.md including test counts and pass/fail status."
+
+## Step 3: Review and finalize
+After the subagent completes:
+1. Run `poetry run pytest --tb=short` to verify tests pass
+2. Check test coverage makes sense (core modules covered)
+3. Update Makefile with test targets (make test, make test-unit, make test-integration)
+4. Print a summary of what was accomplished
+
+Go.

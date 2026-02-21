@@ -33,8 +33,9 @@ ATHENA_OUTPUT = "s3://hoops-edge/athena/"
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Backfill plays for games missing play-by-play.")
-    parser.add_argument("--season", required=True, help="Season (e.g., 2024)")
-    parser.add_argument("--limit", type=int, help="Limit number of games to backfill")
+    parser.add_argument("--season", help="Single season (e.g., 2024)")
+    parser.add_argument("--season-range", help="Season range (e.g., 2020-2026) for multi-season backfill")
+    parser.add_argument("--limit", type=int, help="Limit number of games to backfill per season")
     parser.add_argument("--ingested-at", help="Override ingested_at date (YYYY-MM-DD)")
     parser.add_argument("--dry-run", action="store_true", help="Fetch counts without writing")
     parser.add_argument("--resume-file", help="Path to local resume file for completed gameIds")
@@ -341,6 +342,9 @@ async def _run(
 def main() -> None:
     args = _parse_args()
 
+    if not args.season and not args.season_range:
+        raise RuntimeError("Must specify --season or --season-range")
+
     env = _load_env()
     for k, v in env.items():
         os.environ.setdefault(k, v)
@@ -351,27 +355,40 @@ def main() -> None:
         raise RuntimeError("Missing API token; set CBBD_API_KEY or BEARER_TOKEN in .env or env vars")
 
     ingested_at = args.ingested_at or time.strftime("%Y-%m-%d")
-    season = int(args.season)
-    rows = _missing_games(args.season)
-    if args.limit:
-        rows = rows[: args.limit]
-    print(f"missing plays games: {len(rows)}")
 
-    resume_path = Path(args.resume_file) if args.resume_file else Path("tmp") / f"missing_plays_done_{season}.txt"
-    asyncio.run(
-        _run(
-            rows,
-            cfg,
-            ingested_at,
-            season,
-            args.dry_run,
-            resume_path,
-            args.concurrency,
-            args.batch_size,
-            args.mark_empty,
-            args.log_every,
+    # Build list of seasons from --season or --season-range
+    if args.season_range:
+        parts = args.season_range.split("-")
+        seasons = list(range(int(parts[0]), int(parts[1]) + 1))
+    else:
+        seasons = [int(args.season)]
+
+    for season in seasons:
+        print(f"\n=== Backfilling plays for season {season} ===")
+        rows = _missing_games(str(season))
+        if args.limit:
+            rows = rows[: args.limit]
+        print(f"missing plays games: {len(rows)}")
+
+        if not rows:
+            print(f"No missing plays for season {season}, skipping.")
+            continue
+
+        resume_path = Path(args.resume_file) if args.resume_file else Path("tmp") / f"missing_plays_done_{season}.txt"
+        asyncio.run(
+            _run(
+                rows,
+                cfg,
+                ingested_at,
+                season,
+                args.dry_run,
+                resume_path,
+                args.concurrency,
+                args.batch_size,
+                args.mark_empty,
+                args.log_every,
+            )
         )
-    )
 
 
 if __name__ == "__main__":

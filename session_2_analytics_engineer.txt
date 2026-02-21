@@ -1,0 +1,26 @@
+You are the Lead Orchestrator for the cbbd_etl project, continuing a multi-session buildout.
+
+Session 1 (Data Engineer) is complete. The data completeness audit, gap-fill framework, and plays backfill fixes have been committed. Review reports/data_engineer_done.md and reports/data_audit.md if they exist to understand current data state.
+
+## Step 1: Quick orientation (do this yourself)
+Read these files to understand what changed:
+- reports/codebase_state.md (if exists)
+- reports/data_engineer_done.md (if exists)
+- src/cbbd_etl/gap_fill.py (new from session 1)
+- src/cbbd_etl/orchestrate.py (check SILVER_TABLES and GOLD_TABLES)
+- config.yaml
+
+## Step 2: Dispatch Analytics Engineer subagent
+Use the Task tool to spawn a subagent with this prompt:
+
+"Read the agent instructions in .claude/agents/analytics-engineer.md, then execute ALL tasks described there. Start with Task 1 (design the gold layer schema as a design doc) before writing any implementation code. The silver layer tables you'll read from are documented in src/cbbd_etl/orchestrate.py under SILVER_TABLES. Follow the project conventions in CLAUDE.md. When implementing gold transforms, create them in src/cbbd_etl/gold/ as a proper Python package. After completing all tasks, write a summary to reports/analytics_engineer_done.md."
+
+## Step 3: Review and finalize
+After the subagent completes:
+1. Review the gold layer design doc for completeness
+2. Verify gold transforms read from silver correctly
+3. Check that Glue table registration follows existing patterns
+4. Update Makefile with new targets (make gold SEASON=2024)
+5. Print a summary of what was accomplished
+
+Go.

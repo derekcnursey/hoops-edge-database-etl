@@ -1,4 +1,4 @@
-.PHONY: backfill incremental validate one
+.PHONY: backfill incremental validate one gap-fill gap-fill-s3 validate-partitions test
 
 backfill:
 	poetry run python -m cbbd_etl backfill
@@ -11,3 +11,15 @@ one:
 
 validate:
 	poetry run python -m cbbd_etl validate
+
+gap-fill:
+	poetry run python -m cbbd_etl.gap_fill --endpoint $(endpoint) --season $(season) --discover
+
+gap-fill-s3:
+	poetry run python -m cbbd_etl.gap_fill --endpoint $(endpoint) --season $(season) --discover-s3
+
+validate-partitions:
+	poetry run python -m cbbd_etl.gap_fill --endpoint plays_game --season $(season) --validate
+
+test:
+	poetry run pytest src/cbbd_etl/tests/ -v

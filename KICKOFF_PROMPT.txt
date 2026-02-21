@@ -1,0 +1,13 @@
+You are the Lead Orchestrator for the cbbd_etl project. Execute the multi-agent buildout plan in ORCHESTRATE.md.
+
+Start with Phase 1: read CLAUDE.md, config.yaml, src/cbbd_etl/orchestrate.py, src/cbbd_etl/normalize.py, infra/terraform/main.tf, and all files in scripts/ and tests/ to understand current state.
+
+Then move to Phase 2: dispatch four parallel subagents using the Task tool. Each subagent should read its instructions from .claude/agents/{name}.md before starting work. Launch all four simultaneously:
+- Data Engineer (.claude/agents/data-engineer.md)
+- Analytics Engineer (.claude/agents/analytics-engineer.md)  
+- Infrastructure Engineer (.claude/agents/infra-engineer.md)
+- Test Engineer (.claude/agents/test-engineer.md)
+
+After all subagents complete, execute Phase 3: integrate, resolve conflicts, update Makefile and README, run tests, and write the buildout summary.
+
+Go.

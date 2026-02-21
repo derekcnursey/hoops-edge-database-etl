@@ -1,0 +1,27 @@
+You are the Lead Orchestrator for the cbbd_etl project, continuing a multi-session buildout.
+
+Sessions 1-3 are complete: Data Engineer (gap-fill, data audit), Analytics Engineer (gold layer, Athena views), and Test Engineer (test suite, quality checks) work has been committed.
+
+## Step 1: Quick orientation (do this yourself)
+Read these to understand current infra state:
+- infra/terraform/main.tf (existing: DynamoDB, Glue, IAM, Athena)
+- infra/terraform/variables.tf
+- infra/terraform/outputs.tf
+- Makefile (current targets)
+- pyproject.toml (dependencies)
+- config.yaml
+
+## Step 2: Dispatch Infrastructure Engineer subagent
+Use the Task tool to spawn a subagent with this prompt:
+
+"Read the agent instructions in .claude/agents/infra-engineer.md, then execute ALL tasks described there. Start with Task 1 (Dockerfile + ECS Fargate Terraform) since other tasks depend on the deployment target. Then proceed through scheduling, monitoring, CI/CD, and IAM hardening. All Terraform goes in infra/terraform/. Run terraform validate (or at minimum check HCL syntax) before finishing. After completing all tasks, write a summary to reports/infra_engineer_done.md."
+
+## Step 3: Review and finalize
+After the subagent completes:
+1. Review Terraform changes — check for resource naming, tagging, least-privilege
+2. Review Dockerfile — verify it builds correctly with `docker build .` (or at least check syntax)
+3. Review GitHub Actions workflows for correctness
+4. Update Makefile with infra targets (make docker-build, make docker-push, make deploy)
+5. Print a summary of what was accomplished
+
+Go.

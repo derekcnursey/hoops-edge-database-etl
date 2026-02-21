@@ -1,0 +1,63 @@
+You are the Lead Orchestrator doing final integration of the cbbd_etl project buildout.
+
+All four agent sessions are complete:
+1. Data Engineer — gap-fill framework, data audit, plays backfill fixes
+2. Analytics Engineer — gold layer transforms, Athena views, design docs
+3. Test Engineer — unit/integration tests, data quality checks, fixtures
+4. Infrastructure Engineer — Dockerfile, ECS Terraform, CI/CD, monitoring
+
+## Your Tasks
+
+### 1. Full Review
+Read through every reports/*_done.md file and the key files from each session:
+- src/cbbd_etl/gap_fill.py
+- src/cbbd_etl/gold/ (all modules)
+- src/cbbd_etl/quality/ (all modules)
+- tests/conftest.py and a sampling of test files
+- infra/terraform/ (all .tf files)
+- Dockerfile, docker-compose.yml
+- .github/workflows/ (all workflow files)
+
+### 2. Resolve Conflicts
+Check for any inconsistencies:
+- Do imports work across all new modules?
+- Does orchestrate.py correctly reference new gold modules?
+- Do Terraform resources have consistent naming and tagging?
+- Are there any circular dependencies?
+
+### 3. Update Makefile
+Ensure ALL of these targets exist and work:
+- make backfill / make incremental (existing)
+- make validate (existing)
+- make gap-fill SEASON=2024
+- make gold SEASON=2024
+- make quality-check SEASON=2024
+- make test / make test-unit / make test-integration
+- make docker-build / make docker-push
+- make deploy
+
+### 4. Update README.md
+Add comprehensive sections for:
+- Gold layer: what tables exist, what metrics they contain
+- Data quality: how to run checks, what they validate
+- Gap-fill: how to find and fix data gaps
+- Docker: how to build and run locally
+- Deployment: ECS setup, scheduling, monitoring
+- CI/CD: what the GitHub Actions workflows do
+- Testing: how to run tests, what's covered
+
+### 5. Update config.yaml
+If any session added config knobs that aren't yet in the file, add them with sensible defaults.
+
+### 6. Run Tests
+Execute: poetry run pytest tests/ --tb=short -q
+Fix any failures.
+
+### 7. Write Buildout Summary
+Create reports/buildout_summary.md with:
+- What was built (organized by session/agent)
+- Current project status
+- Known issues or TODOs
+- Recommended next steps (e.g., "run full backfill", "deploy to ECS", "set up monitoring alerts")
+
+Go.
