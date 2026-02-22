@@ -50,15 +50,31 @@ def build(cfg: Config, season: int) -> pa.Table:
     games = dedup_by(read_silver_table(s3, cfg, "fct_games", season=season), ["gameId"])
     record = _compute_records(games, team_lookup)
 
-    # If no games found, use ratings as spine
-    if not record:
-        adj = read_silver_table(s3, cfg, "fct_ratings_adjusted", season=season)
-        if adj.num_rows == 0:
-            return _empty_table()
+    # Build D1 team set from fct_ratings_adjusted (only D1 teams have ratings)
+    adj = read_silver_table(s3, cfg, "fct_ratings_adjusted", season=season)
+    d1_team_ids: Set[int] = set()
+    if adj.num_rows > 0:
         adj_tids = pydict_get(adj, "teamid")
         for tid in adj_tids:
-            if tid is not None and int(tid) not in record:
-                record[int(tid)] = _default_record()
+            if tid is not None:
+                d1_team_ids.add(int(tid))
+
+    # If no games found, use ratings as spine
+    if not record:
+        if not d1_team_ids:
+            return _empty_table()
+        for tid in d1_team_ids:
+            if tid not in record:
+                record[tid] = _default_record()
+
+    # Restrict to D1 teams (those with adjusted ratings) to avoid inflating
+    # the table with D2/D3/NAIA teams that appear in exhibition games
+    if d1_team_ids:
+        record = {tid: rec for tid, rec in record.items() if tid in d1_team_ids}
+        # Ensure all D1 teams have a record entry even if they had no games
+        for tid in d1_team_ids:
+            if tid not in record:
+                record[tid] = _default_record()
 
     team_ids = sorted(record.keys())
     n = len(team_ids)
@@ -71,13 +87,12 @@ def build(cfg: Config, season: int) -> pa.Table:
     out_conf_losses = [record[tid]["conf_losses"] for tid in team_ids]
 
     # ------------------------------------------------------------------
-    # 3. Adjusted ratings
+    # 3. Adjusted ratings (reuse adj already loaded above for D1 filtering)
     # ------------------------------------------------------------------
     out_adj_off: List[Optional[float]] = [None] * n
     out_adj_def: List[Optional[float]] = [None] * n
     out_adj_net: List[Optional[float]] = [None] * n
 
-    adj = read_silver_table(s3, cfg, "fct_ratings_adjusted", season=season)
     if adj.num_rows > 0:
         a_tids = pydict_get(adj, "teamid")
         a_off = pydict_get_first(adj, ["offenserating", "offensiveRating"])
