@@ -20,3 +20,8 @@ def test_silver_partition_dim():
 
 def test_silver_partition_date():
     assert _silver_partition("fct_games", None, "2026-01-28", "2026-01-28") == "season=2026/date=2026-01-28"
+
+
+def test_silver_partition_season_no_asof():
+    """Seasonal fact tables should not include asof= sub-partition."""
+    assert _silver_partition("fct_games", 2025, None, "2026-02-22") == "season=2025"

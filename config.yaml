@@ -2,7 +2,7 @@ bucket: "hoops-edge"
 region: "us-east-1"
 api:
   base_url: "https://api.collegebasketballdata.com"
-  timeout_seconds: 15
+  timeout_seconds: 60
   max_concurrency: 3
   rate_limit_per_sec: 3
   log_every_requests: 100
@@ -186,12 +186,20 @@ validate:
 # Gold layer settings
 gold:
   glue_database: "cbbd_gold"
+  adjusted_efficiencies:
+    half_life: null    # null = equal weight for all games (KenPom-style)
+    hca_oe: 4.0266
+    hca_de: 4.0266
+    barthag_exp: 11.5
+    margin_cap: null   # null = no margin cap
   tables:
     - team_power_rankings
     - game_predictions_features
     - player_season_impact
     - market_lines_analysis
     - team_season_summary
+    - team_adjusted_efficiencies
+    - team_adjusted_efficiencies_no_garbage
 
 # Gap-fill settings
 gap_fill:

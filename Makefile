@@ -47,6 +47,19 @@ gold-dry-run:
 	poetry run python -m cbbd_etl.gold.runner --season $(SEASON) --dry-run
 
 # ---------------------------------------------------------------------------
+# Silver dedup targets
+# ---------------------------------------------------------------------------
+
+dedup-silver:
+	poetry run python scripts/deduplicate_silver.py --table $(TABLE) --season $(SEASON)
+
+dedup-silver-dry:
+	poetry run python scripts/deduplicate_silver.py --table $(TABLE) --season $(SEASON) --dry-run
+
+dedup-silver-all:
+	poetry run python scripts/deduplicate_silver.py --all --season $(SEASON)
+
+# ---------------------------------------------------------------------------
 # Testing targets
 # ---------------------------------------------------------------------------
 

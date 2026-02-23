@@ -1,0 +1,409 @@
+{"level": "INFO", "logger": "botocore.credentials", "message": "Found credentials in shared credentials file: ~/.aws/credentials"}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/conferences", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/conferences \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/conferences/history", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/conferences/history \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/draft/picks", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/draft/picks?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/draft/positions", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/draft/positions \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/draft/teams", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/draft/teams \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-01T00:00:00Z", "endDateRange": "2025-08-30T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-08-01T00%3A00%3A00Z&endDateRange=2025-08-30T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-31T00:00:00Z", "endDateRange": "2025-09-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-08-31T00%3A00%3A00Z&endDateRange=2025-09-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-09-30T00:00:00Z", "endDateRange": "2025-10-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-09-30T00%3A00%3A00Z&endDateRange=2025-10-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-10-30T00:00:00Z", "endDateRange": "2025-11-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-10-30T00%3A00%3A00Z&endDateRange=2025-11-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-11-29T00:00:00Z", "endDateRange": "2025-12-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-11-29T00%3A00%3A00Z&endDateRange=2025-12-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-12-29T00:00:00Z", "endDateRange": "2026-01-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2025-12-29T00%3A00%3A00Z&endDateRange=2026-01-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-01-28T00:00:00Z", "endDateRange": "2026-02-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-01-28T00%3A00%3A00Z&endDateRange=2026-02-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-02-27T00:00:00Z", "endDateRange": "2026-03-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-02-27T00%3A00%3A00Z&endDateRange=2026-03-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-03-29T00:00:00Z", "endDateRange": "2026-04-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-03-29T00%3A00%3A00Z&endDateRange=2026-04-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-04-28T00:00:00Z", "endDateRange": "2026-05-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-04-28T00%3A00%3A00Z&endDateRange=2026-05-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-05-28T00:00:00Z", "endDateRange": "2026-06-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-05-28T00%3A00%3A00Z&endDateRange=2026-06-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-06-27T00:00:00Z", "endDateRange": "2026-07-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-06-27T00%3A00%3A00Z&endDateRange=2026-07-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-07-27T00:00:00Z", "endDateRange": "2026-07-31T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games?season=2026&startDateRange=2026-07-27T00%3A00%3A00Z&endDateRange=2026-07-31T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-01T00:00:00Z", "endDateRange": "2025-08-30T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-08-01T00%3A00%3A00Z&endDateRange=2025-08-30T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-31T00:00:00Z", "endDateRange": "2025-09-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-08-31T00%3A00%3A00Z&endDateRange=2025-09-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-09-30T00:00:00Z", "endDateRange": "2025-10-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-09-30T00%3A00%3A00Z&endDateRange=2025-10-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-10-30T00:00:00Z", "endDateRange": "2025-11-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-10-30T00%3A00%3A00Z&endDateRange=2025-11-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-11-29T00:00:00Z", "endDateRange": "2025-12-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-11-29T00%3A00%3A00Z&endDateRange=2025-12-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-12-29T00:00:00Z", "endDateRange": "2026-01-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2025-12-29T00%3A00%3A00Z&endDateRange=2026-01-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-01-28T00:00:00Z", "endDateRange": "2026-02-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-01-28T00%3A00%3A00Z&endDateRange=2026-02-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-02-27T00:00:00Z", "endDateRange": "2026-03-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-02-27T00%3A00%3A00Z&endDateRange=2026-03-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-03-29T00:00:00Z", "endDateRange": "2026-04-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-03-29T00%3A00%3A00Z&endDateRange=2026-04-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-04-28T00:00:00Z", "endDateRange": "2026-05-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-04-28T00%3A00%3A00Z&endDateRange=2026-05-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-05-28T00:00:00Z", "endDateRange": "2026-06-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-05-28T00%3A00%3A00Z&endDateRange=2026-06-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-06-27T00:00:00Z", "endDateRange": "2026-07-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-06-27T00%3A00%3A00Z&endDateRange=2026-07-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/media", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-07-27T00:00:00Z", "endDateRange": "2026-07-31T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/media?season=2026&startDateRange=2026-07-27T00%3A00%3A00Z&endDateRange=2026-07-31T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-01T00:00:00Z", "endDateRange": "2025-08-30T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-08-01T00%3A00%3A00Z&endDateRange=2025-08-30T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-31T00:00:00Z", "endDateRange": "2025-09-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-08-31T00%3A00%3A00Z&endDateRange=2025-09-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-09-30T00:00:00Z", "endDateRange": "2025-10-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-09-30T00%3A00%3A00Z&endDateRange=2025-10-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-10-30T00:00:00Z", "endDateRange": "2025-11-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-10-30T00%3A00%3A00Z&endDateRange=2025-11-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-11-29T00:00:00Z", "endDateRange": "2025-12-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-11-29T00%3A00%3A00Z&endDateRange=2025-12-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-12-29T00:00:00Z", "endDateRange": "2026-01-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2025-12-29T00%3A00%3A00Z&endDateRange=2026-01-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-01-28T00:00:00Z", "endDateRange": "2026-02-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-01-28T00%3A00%3A00Z&endDateRange=2026-02-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-02-27T00:00:00Z", "endDateRange": "2026-03-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-02-27T00%3A00%3A00Z&endDateRange=2026-03-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-03-29T00:00:00Z", "endDateRange": "2026-04-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-03-29T00%3A00%3A00Z&endDateRange=2026-04-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-04-28T00:00:00Z", "endDateRange": "2026-05-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-04-28T00%3A00%3A00Z&endDateRange=2026-05-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-05-28T00:00:00Z", "endDateRange": "2026-06-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-05-28T00%3A00%3A00Z&endDateRange=2026-06-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-06-27T00:00:00Z", "endDateRange": "2026-07-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-06-27T00%3A00%3A00Z&endDateRange=2026-07-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/players", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-07-27T00:00:00Z", "endDateRange": "2026-07-31T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/players?season=2026&startDateRange=2026-07-27T00%3A00%3A00Z&endDateRange=2026-07-31T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-01T00:00:00Z", "endDateRange": "2025-08-30T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-08-01T00%3A00%3A00Z&endDateRange=2025-08-30T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-31T00:00:00Z", "endDateRange": "2025-09-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-08-31T00%3A00%3A00Z&endDateRange=2025-09-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-09-30T00:00:00Z", "endDateRange": "2025-10-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-09-30T00%3A00%3A00Z&endDateRange=2025-10-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-10-30T00:00:00Z", "endDateRange": "2025-11-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-10-30T00%3A00%3A00Z&endDateRange=2025-11-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-11-29T00:00:00Z", "endDateRange": "2025-12-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-11-29T00%3A00%3A00Z&endDateRange=2025-12-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-12-29T00:00:00Z", "endDateRange": "2026-01-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2025-12-29T00%3A00%3A00Z&endDateRange=2026-01-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-01-28T00:00:00Z", "endDateRange": "2026-02-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-01-28T00%3A00%3A00Z&endDateRange=2026-02-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-02-27T00:00:00Z", "endDateRange": "2026-03-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-02-27T00%3A00%3A00Z&endDateRange=2026-03-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-03-29T00:00:00Z", "endDateRange": "2026-04-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-03-29T00%3A00%3A00Z&endDateRange=2026-04-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-04-28T00:00:00Z", "endDateRange": "2026-05-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-04-28T00%3A00%3A00Z&endDateRange=2026-05-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-05-28T00:00:00Z", "endDateRange": "2026-06-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-05-28T00%3A00%3A00Z&endDateRange=2026-06-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-06-27T00:00:00Z", "endDateRange": "2026-07-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-06-27T00%3A00%3A00Z&endDateRange=2026-07-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/games/teams", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-07-27T00:00:00Z", "endDateRange": "2026-07-31T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/games/teams?season=2026&startDateRange=2026-07-27T00%3A00%3A00Z&endDateRange=2026-07-31T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-01T00:00:00Z", "endDateRange": "2025-08-30T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-08-01T00%3A00%3A00Z&endDateRange=2025-08-30T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-08-31T00:00:00Z", "endDateRange": "2025-09-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-08-31T00%3A00%3A00Z&endDateRange=2025-09-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-09-30T00:00:00Z", "endDateRange": "2025-10-29T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-09-30T00%3A00%3A00Z&endDateRange=2025-10-29T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-10-30T00:00:00Z", "endDateRange": "2025-11-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-10-30T00%3A00%3A00Z&endDateRange=2025-11-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-11-29T00:00:00Z", "endDateRange": "2025-12-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-11-29T00%3A00%3A00Z&endDateRange=2025-12-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2025-12-29T00:00:00Z", "endDateRange": "2026-01-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2025-12-29T00%3A00%3A00Z&endDateRange=2026-01-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-01-28T00:00:00Z", "endDateRange": "2026-02-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-01-28T00%3A00%3A00Z&endDateRange=2026-02-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-02-27T00:00:00Z", "endDateRange": "2026-03-28T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-02-27T00%3A00%3A00Z&endDateRange=2026-03-28T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-03-29T00:00:00Z", "endDateRange": "2026-04-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-03-29T00%3A00%3A00Z&endDateRange=2026-04-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-04-28T00:00:00Z", "endDateRange": "2026-05-27T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-04-28T00%3A00%3A00Z&endDateRange=2026-05-27T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-05-28T00:00:00Z", "endDateRange": "2026-06-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-05-28T00%3A00%3A00Z&endDateRange=2026-06-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-06-27T00:00:00Z", "endDateRange": "2026-07-26T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-06-27T00%3A00%3A00Z&endDateRange=2026-07-26T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines", "attempt": 1, "params": {"season": 2026, "startDateRange": "2026-07-27T00:00:00Z", "endDateRange": "2026-07-31T23:59:59Z"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines?season=2026&startDateRange=2026-07-27T00%3A00%3A00Z&endDateRange=2026-07-31T23%3A59%3A59Z \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/lines/providers", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/lines/providers \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "skip_fanout_endpoint", "endpoint": "lineups_game"}
+{"level": "INFO", "logger": "root", "message": "skip_missing_params", "endpoint": "lineups_team", "params": {"season": 2026}}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/types", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/types \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "skip_fanout_endpoint", "endpoint": "plays_game"}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-16"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-16 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-17"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-17 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-18"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-18 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-19"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-19 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-20"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-20 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 1}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 2, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 2}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 3, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 3}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 4, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 4}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 5, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 5}
+Traceback (most recent call last):
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 377, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/__main__.py", line 4, in <module>
+    main()
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/cli.py", line 80, in main
+    asyncio.run(_run())
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/cli.py", line 61, in _run
+    await orchestrator.run_incremental(seasons=seasons, skip_fanout=args.skip_fanout, only_endpoints=only)
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 184, in run_incremental
+    await self._run_endpoint(name, spec, seasons=seasons, mode="incremental")
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 253, in _run_endpoint
+    await self._run_date_endpoint(spec, mode)
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 374, in _run_date_endpoint
+    resp = await self._fetch(spec, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 523, in _fetch
+    return await self.api.get_json(path, params=safe_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/api_client.py", line 81, in get_json
+    resp = await self._client.get(path, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1814, in get
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1585, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1674, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1702, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1739, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1776, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 376, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+{"level": "INFO", "logger": "botocore.credentials", "message": "Found credentials in shared credentials file: ~/.aws/credentials"}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/rankings", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/rankings?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/ratings/adjusted", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/ratings/adjusted \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/ratings/srs", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/ratings/srs \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/recruiting/players", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/recruiting/players?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "skip_missing_params", "endpoint": "stats_player_shooting_season", "params": {"season": 2026}}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/stats/player/season", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/stats/player/season?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "skip_missing_params", "endpoint": "stats_team_shooting_season", "params": {"season": 2026}}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/stats/team/season", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/stats/team/season?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/teams", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/teams \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/teams/roster", "attempt": 1, "params": {"season": 2026}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/teams/roster?season=2026 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/venues", "attempt": 1, "params": {}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/venues \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "botocore.credentials", "message": "Found credentials in shared credentials file: ~/.aws/credentials"}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-16"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-16 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-17"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-17 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-18"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-18 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-19"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-19 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-20"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-20 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 1}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 2, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 2}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 3, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 3}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 4, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 4}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 5, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "root", "message": "http_timeout", "path": "/plays/date", "attempt": 5}
+Traceback (most recent call last):
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 72, in map_httpcore_exceptions
+    yield
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 377, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/__main__.py", line 4, in <module>
+    main()
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/cli.py", line 80, in main
+    asyncio.run(_run())
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/cli.py", line 61, in _run
+    await orchestrator.run_incremental(seasons=seasons, skip_fanout=args.skip_fanout, only_endpoints=only)
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 184, in run_incremental
+    await self._run_endpoint(name, spec, seasons=seasons, mode="incremental")
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 253, in _run_endpoint
+    await self._run_date_endpoint(spec, mode)
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 374, in _run_date_endpoint
+    resp = await self._fetch(spec, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/orchestrate.py", line 523, in _fetch
+    return await self.api.get_json(path, params=safe_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Desktop/ml_projects/hoops_edge_database_etl/src/cbbd_etl/api_client.py", line 81, in get_json
+    resp = await self._client.get(path, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1814, in get
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1585, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1674, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1702, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1739, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_client.py", line 1776, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 376, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/Users/dereknursey/.pyenv/versions/3.11.9/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/dereknursey/Library/Caches/pypoetry/virtualenvs/cbbd-etl-blbQqbj--py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 89, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+{"level": "INFO", "logger": "botocore.credentials", "message": "Found credentials in shared credentials file: ~/.aws/credentials"}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-16"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-16 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-17"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-17 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-18"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-18 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-19"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-19 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-20"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-20 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-21"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-21 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-22"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-22 \"HTTP/1.1 200 OK\""}
+{"level": "INFO", "logger": "root", "message": "http_request_start", "path": "/plays/date", "attempt": 1, "params": {"date": "2026-02-23"}}
+{"level": "INFO", "logger": "httpx", "message": "HTTP Request: GET https://api.collegebasketballdata.com/plays/date?date=2026-02-23 \"HTTP/1.1 200 OK\""}

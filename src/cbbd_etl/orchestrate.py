@@ -980,7 +980,7 @@ def _silver_partition(table: str, season: Optional[int], date: Optional[str], as
     if date:
         return f"season={season or date[:4]}/date={date}"
     if season:
-        return f"season={season}/asof={asof}"
+        return f"season={season}"
     return f"asof={asof}"
 
 

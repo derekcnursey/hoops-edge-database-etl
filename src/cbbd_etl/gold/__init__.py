@@ -15,6 +15,8 @@ from .game_predictions_features import build as build_game_predictions_features
 from .player_season_impact import build as build_player_season_impact
 from .market_lines_analysis import build as build_market_lines_analysis
 from .team_season_summary import build as build_team_season_summary
+from .adjusted_efficiencies import build as build_adj_eff
+from .adjusted_efficiencies import build_no_garbage as build_adj_eff_no_garbage
 
 GOLD_TRANSFORMS = {
     "team_power_rankings": build_team_power_rankings,
@@ -22,6 +24,8 @@ GOLD_TRANSFORMS = {
     "player_season_impact": build_player_season_impact,
     "market_lines_analysis": build_market_lines_analysis,
     "team_season_summary": build_team_season_summary,
+    "team_adjusted_efficiencies": build_adj_eff,
+    "team_adjusted_efficiencies_no_garbage": build_adj_eff_no_garbage,
 }
 
 __all__ = [
@@ -31,4 +35,6 @@ __all__ = [
     "build_player_season_impact",
     "build_market_lines_analysis",
     "build_team_season_summary",
+    "build_adj_eff",
+    "build_adj_eff_no_garbage",
 ]
