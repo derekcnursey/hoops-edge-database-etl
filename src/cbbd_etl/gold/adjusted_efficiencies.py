@@ -15,11 +15,13 @@ a conference assignment are D1).
 from __future__ import annotations
 
 import ast
+import io
 import logging
 from datetime import date, datetime
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import pyarrow as pa
+import pyarrow.parquet as pq
 
 from ..config import Config
 from ..normalize import normalize_records
@@ -49,6 +51,8 @@ def _get_rating_params(cfg: Config) -> Dict:
         "hca_oe": float(adj_cfg.get("hca_oe", 1.4)),
         "hca_de": float(adj_cfg.get("hca_de", 1.4)),
         "barthag_exp": float(adj_cfg.get("barthag_exp", 11.5)),
+        "sos_exponent": float(adj_cfg.get("sos_exponent", 1.0)),
+        "shrinkage": float(adj_cfg.get("shrinkage", 0.0)),
     }
 
 
@@ -57,6 +61,123 @@ def _get_margin_cap(cfg: Config) -> Optional[float]:
     adj_cfg = cfg.raw.get("gold", {}).get("adjusted_efficiencies", {})
     cap = adj_cfg.get("margin_cap")
     return float(cap) if cap is not None else None
+
+
+def _get_preseason_regression(cfg: Config) -> Optional[float]:
+    """Read optional preseason regression factor from config.
+
+    Returns None to disable preseason priors, or a float in [0, 1]
+    where 0 = use raw prior, 1 = all league average.
+    """
+    adj_cfg = cfg.raw.get("gold", {}).get("adjusted_efficiencies", {})
+    val = adj_cfg.get("preseason_regression")
+    return float(val) if val is not None else None
+
+
+def _load_preseason_prior(
+    s3: S3IO,
+    cfg: Config,
+    season: int,
+    gold_table_name: str,
+    regression: float,
+) -> Optional[Dict[int, Tuple[float, float]]]:
+    """Load previous season's final ratings and regress toward league average.
+
+    For each team, takes their last rating_date in the prior season's gold table
+    and computes: prior = (1 - regression) * final + regression * league_avg.
+
+    Args:
+        s3: S3IO instance.
+        cfg: Pipeline config.
+        season: Current season (will load season - 1).
+        gold_table_name: Gold table to read (e.g. "team_adjusted_efficiencies_no_garbage").
+        regression: Regression factor toward league mean (0-1).
+
+    Returns:
+        Dict of {team_id: (prior_oe, prior_de)} or None if no prior data.
+    """
+    prior_season = season - 1
+    gold_prefix = cfg.s3_layout["gold_prefix"]
+    prefix = f"{gold_prefix}/{gold_table_name}/season={prior_season}/"
+
+    keys = s3.list_keys(prefix)
+    parquet_keys = [k for k in keys if k.endswith(".parquet")]
+
+    if not parquet_keys:
+        logger.info("no prior season %d gold data for %s", prior_season, gold_table_name)
+        return None
+
+    # Read all parquet files for the prior season
+    tables = []
+    for key in parquet_keys:
+        data = s3.get_object_bytes(key)
+        tbl = pq.read_table(
+            io.BytesIO(data),
+            columns=["teamId", "rating_date", "adj_oe", "adj_de"],
+        )
+        tables.append(tbl)
+
+    if not tables:
+        return None
+
+    combined = pa.concat_tables(tables, promote_options="permissive")
+    if combined.num_rows == 0:
+        return None
+
+    # Extract columns
+    team_ids = combined.column("teamId").to_pylist()
+    dates = combined.column("rating_date").to_pylist()
+    adj_oes = combined.column("adj_oe").to_pylist()
+    adj_des = combined.column("adj_de").to_pylist()
+
+    # Find the latest rating_date per team
+    latest: Dict[int, Tuple[str, float, float]] = {}
+    for i in range(len(team_ids)):
+        tid = team_ids[i]
+        dt = str(dates[i])[:10] if dates[i] is not None else ""
+        oe = adj_oes[i]
+        de = adj_des[i]
+        if tid is None or oe is None or de is None:
+            continue
+        tid = int(tid)
+        existing = latest.get(tid)
+        if existing is None or dt > existing[0]:
+            latest[tid] = (dt, float(oe), float(de))
+
+    if not latest:
+        return None
+
+    # Compute league average from final ratings
+    all_oe = [v[1] for v in latest.values()]
+    all_de = [v[2] for v in latest.values()]
+    league_avg_oe = sum(all_oe) / len(all_oe)
+    league_avg_de = sum(all_de) / len(all_de)
+
+    # Recenter so OE and DE have the same mean. Prior seasons can have
+    # systematic OE/DE offset that distorts SOS adjustments in the solver
+    # (league_avg / opp_de ratio shifts when means differ).
+    grand_mean = (league_avg_oe + league_avg_de) / 2.0
+    oe_shift = grand_mean - league_avg_oe
+    de_shift = grand_mean - league_avg_de
+
+    # Regress toward league average, with recentering
+    prior: Dict[int, Tuple[float, float]] = {}
+    for tid, (_, final_oe, final_de) in latest.items():
+        centered_oe = final_oe + oe_shift
+        centered_de = final_de + de_shift
+        prior_oe = (1.0 - regression) * centered_oe + regression * grand_mean
+        prior_de = (1.0 - regression) * centered_de + regression * grand_mean
+        prior[tid] = (prior_oe, prior_de)
+
+    logger.info(
+        "loaded preseason prior from season %d: %d teams, regression=%.2f, "
+        "league_avg_oe=%.2f, league_avg_de=%.2f, recentered to grand_mean=%.2f "
+        "(oe_shift=%+.2f, de_shift=%+.2f)",
+        prior_season, len(prior), regression, league_avg_oe, league_avg_de,
+        grand_mean, oe_shift, de_shift,
+    )
+
+    return prior
 
 
 def _apply_margin_cap(
@@ -92,6 +213,7 @@ def build(cfg: Config, season: int) -> pa.Table:
     s3 = S3IO(cfg.bucket, cfg.region)
     params = _get_rating_params(cfg)
     margin_cap = _get_margin_cap(cfg)
+    preseason_regression = _get_preseason_regression(cfg)
 
     d1_ids = _load_d1_team_ids(s3, cfg)
     team_info = _load_team_info(s3, cfg)
@@ -104,7 +226,16 @@ def build(cfg: Config, season: int) -> pa.Table:
         logger.info("applying margin cap of %s pts", margin_cap)
         games_by_date = _apply_margin_cap(games_by_date, margin_cap)
 
-    records = _run_per_date_ratings(games_by_date, team_info, season, **params)
+    # Load preseason prior from previous season if configured
+    preseason_prior = None
+    if preseason_regression is not None:
+        preseason_prior = _load_preseason_prior(
+            s3, cfg, season, "team_adjusted_efficiencies", preseason_regression
+        )
+
+    records = _run_per_date_ratings(
+        games_by_date, team_info, season, preseason_prior=preseason_prior, **params
+    )
     if not records:
         return normalize_records("team_adjusted_efficiencies", [])
 
@@ -116,6 +247,7 @@ def build_no_garbage(cfg: Config, season: int) -> pa.Table:
     s3 = S3IO(cfg.bucket, cfg.region)
     params = _get_rating_params(cfg)
     margin_cap = _get_margin_cap(cfg)
+    preseason_regression = _get_preseason_regression(cfg)
 
     d1_ids = _load_d1_team_ids(s3, cfg)
     team_info = _load_team_info(s3, cfg)
@@ -128,7 +260,17 @@ def build_no_garbage(cfg: Config, season: int) -> pa.Table:
         logger.info("applying margin cap of %s pts", margin_cap)
         games_by_date = _apply_margin_cap(games_by_date, margin_cap)
 
-    records = _run_per_date_ratings(games_by_date, team_info, season, **params)
+    # Load preseason prior from previous season if configured
+    preseason_prior = None
+    if preseason_regression is not None:
+        preseason_prior = _load_preseason_prior(
+            s3, cfg, season, "team_adjusted_efficiencies_no_garbage",
+            preseason_regression,
+        )
+
+    records = _run_per_date_ratings(
+        games_by_date, team_info, season, preseason_prior=preseason_prior, **params
+    )
     if not records:
         return normalize_records("team_adjusted_efficiencies_no_garbage", [])
 
@@ -388,17 +530,24 @@ def _run_per_date_ratings(
     hca_oe: float = 1.4,
     hca_de: float = 1.4,
     barthag_exp: float = 11.5,
+    preseason_prior: Optional[Dict[int, Tuple[float, float]]] = None,
+    sos_exponent: float = 1.0,
+    shrinkage: float = 0.0,
 ) -> List[Dict[str, Any]]:
     """For each unique game date, run iterative solver with recency weighting.
 
     Warm-starts from the previous date's solution to speed convergence.
+    If ``preseason_prior`` is provided, uses it as the initial warm-start
+    for the first date instead of starting from raw averages.
+
     Returns a flat list of per-team-per-date records.
     """
     sorted_dates = sorted(games_by_date.keys())
     if not sorted_dates:
         return []
 
-    prior: Optional[Dict[int, Tuple[float, float]]] = None
+    # Use preseason prior as warm-start for the first date
+    prior: Optional[Dict[int, Tuple[float, float]]] = preseason_prior
     records: List[Dict[str, Any]] = []
     max_iters_seen = 0
     total_iters = 0
@@ -434,7 +583,10 @@ def _run_per_date_ratings(
         if not all_games:
             continue
 
-        result = solve_ratings(all_games, prior=prior, hca_oe=hca_oe, hca_de=hca_de)
+        result = solve_ratings(
+            all_games, prior=prior, hca_oe=hca_oe, hca_de=hca_de,
+            sos_exponent=sos_exponent, shrinkage=shrinkage,
+        )
         if not result:
             continue
 

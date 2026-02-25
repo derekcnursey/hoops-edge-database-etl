@@ -1,7 +1,7 @@
-bucket: "hoops-edge"
-region: "us-east-1"
+bucket: hoops-edge
+region: us-east-1
 api:
-  base_url: "https://api.collegebasketballdata.com"
+  base_url: https://api.collegebasketballdata.com
   timeout_seconds: 60
   max_concurrency: 3
   rate_limit_per_sec: 3
@@ -13,7 +13,6 @@ api:
     base_delay_seconds: 0.5
     max_delay_seconds: 8
   rolling_window_days: 7
-
 seasons:
   start: 2010
   end: 2026
@@ -21,193 +20,211 @@ seasons:
   window_start_day: 1
   window_end_month: 7
   window_end_day: 31
-
 endpoints:
   conferences:
-    path: "/conferences"
-    type: "snapshot"
+    path: /conferences
+    type: snapshot
   conferences_history:
-    path: "/conferences/history"
-    type: "snapshot"
+    path: /conferences/history
+    type: snapshot
   draft_picks:
-    path: "/draft/picks"
-    type: "season"
-    season_param: "season"
+    path: /draft/picks
+    type: season
+    season_param: season
   draft_positions:
-    path: "/draft/positions"
-    type: "snapshot"
+    path: /draft/positions
+    type: snapshot
   draft_teams:
-    path: "/draft/teams"
-    type: "snapshot"
+    path: /draft/teams
+    type: snapshot
   games:
-    path: "/games"
-    type: "season"
-    season_param: "season"
-    start_date_param: "startDateRange"
-    end_date_param: "endDateRange"
+    path: /games
+    type: season
+    season_param: season
+    start_date_param: startDateRange
+    end_date_param: endDateRange
   games_media:
-    path: "/games/media"
-    type: "season"
-    season_param: "season"
-    start_date_param: "startDateRange"
-    end_date_param: "endDateRange"
+    path: /games/media
+    type: season
+    season_param: season
+    start_date_param: startDateRange
+    end_date_param: endDateRange
   games_players:
-    path: "/games/players"
-    type: "season"
-    season_param: "season"
-    start_date_param: "startDateRange"
-    end_date_param: "endDateRange"
+    path: /games/players
+    type: season
+    season_param: season
+    start_date_param: startDateRange
+    end_date_param: endDateRange
   games_teams:
-    path: "/games/teams"
-    type: "season"
-    season_param: "season"
-    start_date_param: "startDateRange"
-    end_date_param: "endDateRange"
+    path: /games/teams
+    type: season
+    season_param: season
+    start_date_param: startDateRange
+    end_date_param: endDateRange
   lines:
-    path: "/lines"
-    type: "season"
-    season_param: "season"
-    start_date_param: "startDateRange"
-    end_date_param: "endDateRange"
+    path: /lines
+    type: season
+    season_param: season
+    start_date_param: startDateRange
+    end_date_param: endDateRange
   lines_providers:
-    path: "/lines/providers"
-    type: "snapshot"
+    path: /lines/providers
+    type: snapshot
   lineups_game:
-    path: "/lineups/game/{gameId}"
-    type: "game_fanout"
-    required_params: ["gameId"]
+    path: /lineups/game/{gameId}
+    type: game_fanout
+    required_params:
+    - gameId
   lineups_team:
-    path: "/lineups/team"
-    type: "season"
-    season_param: "season"
-    required_params: ["season", "team"]
+    path: /lineups/team
+    type: season
+    season_param: season
+    required_params:
+    - season
+    - team
   plays_types:
-    path: "/plays/types"
-    type: "snapshot"
+    path: /plays/types
+    type: snapshot
   plays_game:
-    path: "/plays/game/{gameId}"
-    type: "game_fanout"
-    required_params: ["gameId"]
+    path: /plays/game/{gameId}
+    type: game_fanout
+    required_params:
+    - gameId
   plays_date:
-    path: "/plays/date"
-    type: "date"
-    date_param: "date"
-    required_params: ["date"]
+    path: /plays/date
+    type: date
+    date_param: date
+    required_params:
+    - date
   plays_player:
-    path: "/plays/player/{playerId}"
-    type: "player_fanout"
-    required_params: ["playerId", "season"]
+    path: /plays/player/{playerId}
+    type: player_fanout
+    required_params:
+    - playerId
+    - season
   plays_team:
-    path: "/plays/team"
-    type: "season"
-    season_param: "season"
-    required_params: ["season", "team"]
+    path: /plays/team
+    type: season
+    season_param: season
+    required_params:
+    - season
+    - team
   plays_tournament:
-    path: "/plays/tournament"
-    type: "season"
-    season_param: "season"
-    required_params: ["season", "tournament"]
+    path: /plays/tournament
+    type: season
+    season_param: season
+    required_params:
+    - season
+    - tournament
   substitutions_game:
-    path: "/substitutions/game/{gameId}"
-    type: "game_fanout"
-    required_params: ["gameId"]
+    path: /substitutions/game/{gameId}
+    type: game_fanout
+    required_params:
+    - gameId
   substitutions_player:
-    path: "/substitutions/player/{playerId}"
-    type: "player_fanout"
-    required_params: ["playerId", "season"]
+    path: /substitutions/player/{playerId}
+    type: player_fanout
+    required_params:
+    - playerId
+    - season
   substitutions_team:
-    path: "/substitutions/team"
-    type: "season"
-    season_param: "season"
-    required_params: ["season", "team"]
+    path: /substitutions/team
+    type: season
+    season_param: season
+    required_params:
+    - season
+    - team
   rankings:
-    path: "/rankings"
-    type: "season"
-    season_param: "season"
+    path: /rankings
+    type: season
+    season_param: season
   ratings_adjusted:
-    path: "/ratings/adjusted"
-    type: "snapshot"
+    path: /ratings/adjusted
+    type: snapshot
   ratings_srs:
-    path: "/ratings/srs"
-    type: "snapshot"
+    path: /ratings/srs
+    type: snapshot
   recruiting_players:
-    path: "/recruiting/players"
-    type: "season"
-    season_param: "season"
+    path: /recruiting/players
+    type: season
+    season_param: season
   stats_player_shooting_season:
-    path: "/stats/player/shooting/season"
-    type: "season"
-    season_param: "season"
-    required_params: ["season"]
-    required_any: [["team", "conference"]]
+    path: /stats/player/shooting/season
+    type: season
+    season_param: season
+    required_params:
+    - season
+    required_any:
+    - - team
+      - conference
   stats_player_season:
-    path: "/stats/player/season"
-    type: "season"
-    season_param: "season"
-    required_params: ["season"]
+    path: /stats/player/season
+    type: season
+    season_param: season
+    required_params:
+    - season
   stats_team_shooting_season:
-    path: "/stats/team/shooting/season"
-    type: "season"
-    season_param: "season"
-    required_params: ["season"]
-    required_any: [["team", "conference"]]
+    path: /stats/team/shooting/season
+    type: season
+    season_param: season
+    required_params:
+    - season
+    required_any:
+    - - team
+      - conference
   stats_team_season:
-    path: "/stats/team/season"
-    type: "season"
-    season_param: "season"
-    required_params: ["season"]
+    path: /stats/team/season
+    type: season
+    season_param: season
+    required_params:
+    - season
   teams:
-    path: "/teams"
-    type: "snapshot"
+    path: /teams
+    type: snapshot
   teams_roster:
-    path: "/teams/roster"
-    type: "season"
-    season_param: "season"
-    required_params: ["season"]
+    path: /teams/roster
+    type: season
+    season_param: season
+    required_params:
+    - season
   venues:
-    path: "/venues"
-    type: "snapshot"
-
+    path: /venues
+    type: snapshot
 s3_layout:
-  raw_prefix: "raw"
-  bronze_prefix: "bronze"
-  silver_prefix: "silver"
-  gold_prefix: "gold"
-  ref_prefix: "ref"
-  meta_prefix: "meta"
-  deadletter_prefix: "deadletter"
-  tmp_prefix: "tmp"
-  athena_prefix: "athena"
-
-# Validation controls
+  raw_prefix: raw
+  bronze_prefix: bronze
+  silver_prefix: silver
+  gold_prefix: gold
+  ref_prefix: ref
+  meta_prefix: meta
+  deadletter_prefix: deadletter
+  tmp_prefix: tmp
+  athena_prefix: athena
 validate:
   strict_schema: false
-
-# Gold layer settings
 gold:
-  glue_database: "cbbd_gold"
+  glue_database: cbbd_gold
   adjusted_efficiencies:
-    half_life: null    # null = equal weight for all games (KenPom-style)
+    half_life: null
     hca_oe: 4.0266
     hca_de: 4.0266
     barthag_exp: 11.5
-    margin_cap: null   # null = no margin cap
+    margin_cap: null
+    preseason_regression: null
+    sos_exponent: 0.85
+    shrinkage: 0.0
   tables:
-    - team_power_rankings
-    - game_predictions_features
-    - player_season_impact
-    - market_lines_analysis
-    - team_season_summary
-    - team_adjusted_efficiencies
-    - team_adjusted_efficiencies_no_garbage
-
-# Gap-fill settings
+  - team_power_rankings
+  - game_predictions_features
+  - player_season_impact
+  - market_lines_analysis
+  - team_season_summary
+  - team_adjusted_efficiencies
+  - team_adjusted_efficiencies_no_garbage
 gap_fill:
-  athena_database: "cbbd_silver"
-  athena_workgroup: "cbbd"
-  athena_output: "s3://hoops-edge/athena/"
+  athena_database: cbbd_silver
+  athena_workgroup: cbbd
+  athena_output: s3://hoops-edge/athena/
   max_concurrency: 5
-  resume_dir: ".gap_fill_resume"
-
-# Optional: skip problematic endpoints by name
+  resume_dir: .gap_fill_resume
 skip_endpoints: []

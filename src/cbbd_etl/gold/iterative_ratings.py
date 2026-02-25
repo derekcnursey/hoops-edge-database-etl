@@ -85,6 +85,8 @@ def solve_ratings(
     max_iter: int = 200,
     tol: float = 0.01,
     damping: float = 1.0,
+    sos_exponent: float = 1.0,
+    shrinkage: float = 0.0,
 ) -> Dict[int, Dict]:
     """Run iterative convergence to compute adjusted efficiency ratings.
 
@@ -102,6 +104,10 @@ def solve_ratings(
         tol: Convergence tolerance (max absolute change in any rating).
         damping: Blend factor (0-1). Each iteration: new = damping*computed + (1-damping)*old.
             Higher values update more aggressively; 1.0 means full replacement.
+        sos_exponent: Exponent on the SOS multiplier (league_avg / opp_rating)^alpha.
+            Values < 1 dampen the SOS adjustment; 1.0 = standard Pomeroy.
+        shrinkage: Post-convergence shrinkage toward league average (0-1).
+            Final adj_oe = (1-shrinkage)*adj_oe + shrinkage*league_avg.
 
     Returns:
         Dict keyed by team_id with keys: adj_oe, adj_de, raw_oe, raw_de,
@@ -241,16 +247,19 @@ def solve_ratings(
                 opp_oe = adj_oe_map.get(g.opp_id, league_avg)
 
                 # Per-game SOS adjustment:
-                # adj_game_oe = game_oe * (league_avg / opp_adj_de)
+                # adj_game_oe = game_oe * (league_avg / opp_adj_de)^alpha
                 # If opponent has strong defense (low adj_de), this boosts.
                 # If opponent has weak defense (high adj_de), this reduces.
+                # Alpha < 1 dampens the SOS effect.
                 if opp_de > 0:
-                    w_adj_oe += g.weight * game_oe[tid][i] * (league_avg / opp_de)
+                    sos_mult_oe = (league_avg / opp_de) ** sos_exponent
+                    w_adj_oe += g.weight * game_oe[tid][i] * sos_mult_oe
                 else:
                     w_adj_oe += g.weight * game_oe[tid][i]
 
                 if opp_oe > 0:
-                    w_adj_de += g.weight * game_de[tid][i] * (league_avg / opp_oe)
+                    sos_mult_de = (league_avg / opp_oe) ** sos_exponent
+                    w_adj_de += g.weight * game_de[tid][i] * sos_mult_de
                 else:
                     w_adj_de += g.weight * game_de[tid][i]
 
@@ -286,6 +295,12 @@ def solve_ratings(
 
         if max_delta < tol:
             break
+
+    # Apply post-convergence shrinkage toward league average
+    if shrinkage > 0:
+        for tid in team_ids:
+            adj_oe_map[tid] = (1.0 - shrinkage) * adj_oe_map[tid] + shrinkage * league_avg
+            adj_de_map[tid] = (1.0 - shrinkage) * adj_de_map[tid] + shrinkage * league_avg
 
     # Compute adjusted tempo
     league_avg_tempo = 0.0
