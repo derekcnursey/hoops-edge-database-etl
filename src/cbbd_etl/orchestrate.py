@@ -122,6 +122,7 @@ class Orchestrator:
         self.registry = build_registry(config.endpoints)
         self._game_ids: Set[int] = set()
         self._game_meta: Dict[int, Dict[str, Any]] = {}
+        self._resume_game_ids: Optional[Set[int]] = None
         self._player_ids: Set[int] = set()
         self._player_seasons: Set[Tuple[int, int]] = set()
         self._run_id = new_run_id()
@@ -382,30 +383,43 @@ class Orchestrator:
         game_ids = sorted(self._game_ids)
         if self._resume_game_ids:
             game_ids = [gid for gid in game_ids if gid not in self._resume_game_ids]
-        log_json(self.logger, "fanout_start", endpoint=spec.name, count=len(game_ids))
-        tasks = []
-        for game_id in game_ids:
-            params = {"gameId": game_id}
-            meta = self._game_meta.get(game_id, {})
-            tasks.append(self._run_single_call(spec, params, mode, season=meta.get("season"), date=meta.get("date")))
-        await _gather(tasks)
-        log_json(self.logger, "fanout_done", endpoint=spec.name, count=len(game_ids))
+        total = len(game_ids)
+        log_json(self.logger, "fanout_start", endpoint=spec.name, count=total)
+        batch_size = self.config.api.get("fanout_batch_size", 20)
+        for i in range(0, total, batch_size):
+            batch = game_ids[i : i + batch_size]
+            tasks = []
+            for game_id in batch:
+                params = {"gameId": game_id}
+                meta = self._game_meta.get(game_id, {})
+                tasks.append(self._run_single_call(spec, params, mode, season=meta.get("season"), date=meta.get("date")))
+            await _gather(tasks)
+            log_json(self.logger, "fanout_batch_done", endpoint=spec.name, batch_end=i + len(batch), total=total)
+        log_json(self.logger, "fanout_done", endpoint=spec.name, count=total)
 
     async def _run_player_fanout(self, spec, seasons: List[int], mode: str) -> None:
         await self._ensure_player_ids(seasons, mode)
         use_pairs = self._fanout_requires_season(spec)
-        total = len(self._player_seasons) if use_pairs else len(self._player_ids)
-        log_json(self.logger, "fanout_start", endpoint=spec.name, count=total)
-        tasks = []
         if use_pairs:
-            for player_id, season in sorted(self._player_seasons):
-                params = {"playerId": player_id, "season": season}
-                tasks.append(self._run_single_call(spec, params, mode, season=season))
+            items = sorted(self._player_seasons)
         else:
-            for player_id in sorted(self._player_ids):
-                params = {"playerId": player_id}
-                tasks.append(self._run_single_call(spec, params, mode))
-        await _gather(tasks)
+            items = sorted(self._player_ids)
+        total = len(items)
+        log_json(self.logger, "fanout_start", endpoint=spec.name, count=total)
+        batch_size = self.config.api.get("fanout_batch_size", 20)
+        for i in range(0, total, batch_size):
+            batch = items[i : i + batch_size]
+            tasks = []
+            if use_pairs:
+                for player_id, season in batch:
+                    params = {"playerId": player_id, "season": season}
+                    tasks.append(self._run_single_call(spec, params, mode, season=season))
+            else:
+                for player_id in batch:
+                    params = {"playerId": player_id}
+                    tasks.append(self._run_single_call(spec, params, mode))
+            await _gather(tasks)
+            log_json(self.logger, "fanout_batch_done", endpoint=spec.name, batch_end=i + len(batch), total=total)
         log_json(self.logger, "fanout_done", endpoint=spec.name, count=total)
 
     async def _run_fanout_with_limits(

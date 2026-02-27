@@ -227,4 +227,6 @@ gap_fill:
   athena_output: s3://hoops-edge/athena/
   max_concurrency: 5
   resume_dir: .gap_fill_resume
-skip_endpoints: []
+skip_endpoints:
+  - plays_player
+  - substitutions_player

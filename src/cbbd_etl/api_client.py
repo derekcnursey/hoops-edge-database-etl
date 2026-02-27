@@ -29,18 +29,19 @@ class RateLimiter:
         self._last = time.monotonic()
 
     async def acquire(self) -> None:
-        async with self._lock:
-            now = time.monotonic()
-            elapsed = now - self._last
-            refill = int(elapsed * self.rate_per_sec)
-            if refill > 0:
-                self._tokens = min(self.rate_per_sec, self._tokens + refill)
-                self._last = now
-            if self._tokens == 0:
-                sleep_for = max(0.01, 1 / self.rate_per_sec)
-                await asyncio.sleep(sleep_for)
-                return await self.acquire()
-            self._tokens -= 1
+        while True:
+            async with self._lock:
+                now = time.monotonic()
+                elapsed = now - self._last
+                refill = int(elapsed * self.rate_per_sec)
+                if refill > 0:
+                    self._tokens = min(self.rate_per_sec, self._tokens + refill)
+                    self._last = now
+                if self._tokens > 0:
+                    self._tokens -= 1
+                    return
+            # Sleep outside the lock so other coroutines can proceed
+            await asyncio.sleep(max(0.01, 1 / self.rate_per_sec))
 
 
 class ApiClient:
