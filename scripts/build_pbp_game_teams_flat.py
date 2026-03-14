@@ -71,23 +71,6 @@ def _compute_game_minutes(max_period: int, regulation_periods: int, regulation_m
     return float(regulation_minutes + ot_periods * ot_minutes)
 
 
-def _date_from_key(key: str) -> Optional[str]:
-    marker = "/date="
-    if marker not in key:
-        return None
-    return key.split(marker, 1)[1][:10]
-
-
-def _date_in_range(value: Optional[str], start_date: Optional[str], end_date: Optional[str]) -> bool:
-    if value is None:
-        return start_date is None and end_date is None
-    if start_date and value < start_date:
-        return False
-    if end_date and value > end_date:
-        return False
-    return True
-
-
 @dataclass
 class Agg:
     points: float = 0.0
@@ -116,9 +99,6 @@ def main() -> None:
     parser.add_argument("--limit-keys", type=int, default=0)
     parser.add_argument("--log-every", type=int, default=25)
     parser.add_argument("--purge", action="store_true")
-    parser.add_argument("--start-date", type=str, default=None)
-    parser.add_argument("--end-date", type=str, default=None)
-    parser.add_argument("--replace-existing-dates", action="store_true")
     parser.add_argument("--exclude-garbage-time", action="store_true")
     parser.add_argument("--output-table", default="fct_pbp_game_teams_flat")
     parser.add_argument("--dry-run", action="store_true")
@@ -133,10 +113,7 @@ def main() -> None:
     enriched_prefix = f"{silver_prefix}/fct_pbp_plays_enriched/season={args.season}/"
     out_prefix = f"{silver_prefix}/{args.output_table}/season={args.season}/"
 
-    keys = [
-        k for k in s3.list_keys(enriched_prefix)
-        if k.endswith(".parquet") and _date_in_range(_date_from_key(k), args.start_date, args.end_date)
-    ]
+    keys = [k for k in s3.list_keys(enriched_prefix) if k.endswith(".parquet")]
     if args.limit_keys > 0:
         keys = keys[: args.limit_keys]
     if not keys:
@@ -297,8 +274,8 @@ def main() -> None:
 
         team_possessions = agg.possessions
         opp_possessions = opp.possessions if opp else 0.0
-        team_possessions_formula = fg_att + 0.475 * agg.fta - agg.reb_off + agg.tov
-        opp_possessions_formula = opp_fg_att + 0.475 * (opp.fta if opp else 0.0) - (opp.reb_off if opp else 0.0) + (opp.tov if opp else 0.0)
+        team_possessions_formula = fg_att + 0.44 * agg.fta - agg.reb_off + agg.tov
+        opp_possessions_formula = opp_fg_att + 0.44 * (opp.fta if opp else 0.0) - (opp.reb_off if opp else 0.0) + (opp.tov if opp else 0.0)
 
         team_points = agg.points
         opp_points = opp.points if opp else 0.0
@@ -404,13 +381,6 @@ def main() -> None:
         if not date:
             continue
         by_date[str(date)].append(rec)
-
-    if args.replace_existing_dates and not args.purge and not args.dry_run:
-        for date in sorted(by_date):
-            existing = s3.list_keys(f"{out_prefix}date={date}/")
-            if existing:
-                print(f"[pbp] replacing {len(existing)} keys under {out_prefix}date={date}/")
-                s3.delete_keys(existing)
 
     if args.dry_run:
         for date, rows in sorted(by_date.items()):

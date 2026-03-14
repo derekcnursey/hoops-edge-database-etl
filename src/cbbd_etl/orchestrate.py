@@ -367,7 +367,7 @@ class Orchestrator:
         date_param = spec.date_param or "date"
         window_days = self.config.api.get("rolling_window_days", 7)
         end_date = datetime.utcnow().date()
-        start_date = end_date - timedelta(days=max(window_days - 1, 0))
+        start_date = end_date - timedelta(days=window_days)
         for i in range((end_date - start_date).days + 1):
             day = start_date + timedelta(days=i)
             params = {date_param: day.isoformat()}
@@ -483,9 +483,7 @@ class Orchestrator:
             self._load_game_ids_from_s3(seasons)
             return
         if mode == "incremental":
-            start = datetime.utcnow().date() - timedelta(
-                days=max(self.config.api.get("rolling_window_days", 7) - 1, 0)
-            )
+            start = datetime.utcnow().date() - timedelta(days=self.config.api.get("rolling_window_days", 7))
             end = datetime.utcnow().date()
             params = {}
             if games_spec.start_date_param and games_spec.end_date_param:
@@ -824,7 +822,7 @@ class Orchestrator:
 
     async def _run_games_by_chunks(self, spec, season: int, payload_hash: str, mode: str) -> None:
         season_param = spec.season_param or "season"
-        start_date, end_date = self._bounded_season_window(season, mode)
+        start_date, end_date = self._season_window(season)
         chunk_days = int(self.config.api.get("games_chunk_days", 30))
         for start, end in _date_chunks(start_date, end_date, chunk_days):
             params = {
@@ -862,7 +860,7 @@ class Orchestrator:
 
     async def _run_lines_by_chunks(self, spec, season: int, payload_hash: str, mode: str) -> None:
         season_param = spec.season_param or "season"
-        start_date, end_date = self._bounded_season_window(season, mode)
+        start_date, end_date = self._season_window(season)
         chunk_days = int(self.config.api.get("lines_chunk_days", 30))
         for start, end in _date_chunks(start_date, end_date, chunk_days):
             params = {
@@ -884,7 +882,7 @@ class Orchestrator:
 
     async def _run_season_by_chunks(self, spec, season: int, payload_hash: str, mode: str) -> None:
         season_param = spec.season_param or "season"
-        start_date, end_date = self._bounded_season_window(season, mode)
+        start_date, end_date = self._season_window(season)
         chunk_days = int(self.config.api.get("games_chunk_days", 30))
         for start, end in _date_chunks(start_date, end_date, chunk_days):
             params = {
@@ -912,16 +910,6 @@ class Orchestrator:
         start = date(season - 1, start_month, start_day)
         end = date(season, end_month, end_day)
         return start, end
-
-    def _bounded_season_window(self, season: int, mode: str) -> tuple[date, date]:
-        start_date, end_date = self._season_window(season)
-        if mode != "incremental":
-            return start_date, end_date
-        today = datetime.utcnow().date()
-        end_date = min(end_date, today)
-        window_days = max(int(self.config.api.get("rolling_window_days", 7)), 1)
-        start_date = max(start_date, end_date - timedelta(days=window_days - 1))
-        return start_date, end_date
 
     def _is_skipped(self, endpoint: str) -> bool:
         return endpoint in self.config.raw.get("skip_endpoints", [])
