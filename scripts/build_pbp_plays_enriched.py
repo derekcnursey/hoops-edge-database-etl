@@ -17,7 +17,7 @@ from cbbd_etl.pbp_stats import PlayClassifier, PlayFlags, PlayTypePatterns
 from cbbd_etl.s3_io import S3IO, make_part_key, new_run_id
 
 
-DATE_RE = re.compile(r"season=(\\d+)/date=([0-9]{4}-[0-9]{2}-[0-9]{2})/")
+DATE_RE = re.compile(r"season=(\d+)/date=([0-9]{4}-[0-9]{2}-[0-9]{2})/")
 
 
 def _to_int(value: object) -> Optional[int]:
@@ -73,6 +73,16 @@ def _group_keys_by_date(keys: Iterable[str]) -> Dict[str, List[str]]:
         date = match.group(2)
         grouped[date].append(key)
     return grouped
+
+
+def _date_in_range(value: str, start_date: Optional[str], end_date: Optional[str]) -> bool:
+    if value == "__all__":
+        return start_date is None and end_date is None
+    if start_date and value < start_date:
+        return False
+    if end_date and value > end_date:
+        return False
+    return True
 
 
 @dataclass
@@ -284,6 +294,9 @@ def main() -> None:
     parser.add_argument("--limit-keys", type=int, default=0)
     parser.add_argument("--log-every", type=int, default=10)
     parser.add_argument("--purge", action="store_true")
+    parser.add_argument("--start-date", type=str, default=None)
+    parser.add_argument("--end-date", type=str, default=None)
+    parser.add_argument("--replace-existing-dates", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -298,7 +311,10 @@ def main() -> None:
         keys = keys[: args.limit_keys]
 
     grouped = _group_keys_by_date(keys)
-    dates = sorted(grouped.keys())
+    dates = sorted(
+        date for date in grouped.keys()
+        if _date_in_range(date, args.start_date, args.end_date)
+    )
     if args.limit_dates > 0:
         dates = dates[: args.limit_dates]
 
@@ -310,6 +326,12 @@ def main() -> None:
         if existing:
             print(f"[pbp] purging {len(existing)} keys under {enriched_prefix}")
             s3.delete_keys(existing)
+    elif args.replace_existing_dates and not args.dry_run:
+        for date in dates:
+            existing = s3.list_keys(f"{enriched_prefix}date={date}/")
+            if existing:
+                print(f"[pbp] replacing {len(existing)} keys under {enriched_prefix}date={date}/")
+                s3.delete_keys(existing)
 
     patterns = PlayTypePatterns.from_yaml(args.playtype_map)
     classifier = PlayClassifier(patterns)

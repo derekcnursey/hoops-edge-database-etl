@@ -19,6 +19,7 @@ class ApiConfig:
     log_every_requests: int = 100
     games_chunk_days: int = 30
     lines_chunk_days: int = 30
+    fanout_batch_size: int = 20
 
 
 class RateLimiter:

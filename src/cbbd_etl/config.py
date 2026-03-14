@@ -42,6 +42,16 @@ def load_config(path: str = "config.yaml") -> Config:
     bucket = raw.get("bucket")
     if bucket != "hoops-edge":
         raise ValueError("bucket must be 'hoops-edge' per requirements")
+    api_cfg = raw.setdefault("api", {})
+    overrides = {
+        "rolling_window_days": os.getenv("CBBD_ETL_ROLLING_WINDOW_DAYS"),
+        "max_concurrency": os.getenv("CBBD_ETL_MAX_CONCURRENCY"),
+        "rate_limit_per_sec": os.getenv("CBBD_ETL_RATE_LIMIT_PER_SEC"),
+        "fanout_batch_size": os.getenv("CBBD_ETL_FANOUT_BATCH_SIZE"),
+    }
+    for key, value in overrides.items():
+        if value:
+            api_cfg[key] = int(value)
     return Config(raw)
 
 
